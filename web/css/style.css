@@ -1,0 +1,171 @@
+/* 
+    Created on : 17 janv. 2015, 18:48:49
+    Author     : Damien
+*/
+html{ height: 100%; }
+
+body{
+    
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.background{
+    background: url("../images/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+/***********/
+/* En tete */
+/***********/
+.header{
+    background-color: white;
+    box-shadow: 0 0 0 2px lightgray;
+    color: grey;
+    font-family: Verdana;
+    font-size: 125%;
+    float: left;
+    height: 7%;
+    line-height: 300%;
+    text-align: center;
+    width: 100%;
+}
+
+.titre_header{
+    float: left;
+    height: 100%;
+    width: 15%;
+}
+.middle_header{
+    float: left;
+    height: 100%;
+    text-align: center;
+    width: 70%;
+}
+.connexion_header{
+    float: left;
+    height: 100%;
+    width: 15%;
+}
+.lien_header{ 
+    text-decoration: none; 
+    color: grey;
+}
+.lien_header:hover{ text-decoration: underline; }
+
+.menu{
+    height: 95%;
+    width: 100%;
+}
+.onglets{
+    height: 100%;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 75%;
+}
+.onglets li{
+    float: left;
+    height: 100%;
+    min-width: 25%;
+    max-width: 33%;
+    padding: 0;
+}
+.onglets li:hover{
+    background-color: #E0E0E0;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/****************/
+/* Pied de page */
+/****************/
+.footer{
+    background-color: turquoise;
+    box-shadow: 8px red;
+    color: black;
+    font-size: 11px;
+    font-style: italic;
+    opacity: 0.7;
+    padding: 0.5% 0;
+    text-align: center;
+    width: 100%;
+}
+
+/*******************************/
+/* CSS Connexion & Inscription */
+/*******************************/
+.f_connexion, .f_inscription, .central{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid white;
+    color: lightseagreen;
+    font-weight: bold;
+    padding: 3% 0;
+    position: absolute;
+}
+.f_connexion{
+    left: 34%;
+    top: 38%;
+    text-align: center;
+    width: 32%;
+}
+.f_inscription{
+    margin: 0;
+    left: 31%;
+    top: 31%;
+    width: 35%;
+}
+.central{
+    min-height: 100%;
+    width: 70%;
+}
+
+.tableConnexion{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inscription{
+    color: grey;
+    text-decoration: none;
+    font-size: 11px;
+    font-style: italic;
+}
+.inscription:hover{
+    text-decoration: underline;
+}
+
+/***************/
+/* Déconnexion */
+/***************/
+.deconnexion, .link_deconnexion{
+    color: black;
+    font-size: 12px;
+    line-height: normal;
+    padding-top: 4%;
+    text-decoration: none;
+}
+.link_deconnexion:hover{
+    text-decoration: underline;
+}
+
+/***********/
+/* Erreurs */
+/***********/
+.erreur, .requis, .erreur_connexion{
+    color: red;
+    font-weight: bold;
+    list-style-type: none;
+}
+.erreur_connexion{ 
+    margin: 0;
+    padding: 0;
+    text-align: center; 
+}

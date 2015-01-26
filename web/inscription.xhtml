@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Miage - S'inscrire</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <f:loadBundle basename="resources.messages" var="messages"/>
+    </h:head>
+    <h:body>
+        <ui:include src="/WEB-INF/include/header.xhtml" />
+        
+        <h:panelGroup layout="block" styleClass="background">
+        <fieldset class="f_inscription">
+        <h:form>
+            <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="tableConnexion">
+                <h:outputLabel value="#{messages.nom}" > <span class="requis">*</span></h:outputLabel>
+                <h:inputText id="nom" value="#{inscription.utilisateur.nom}" requiredMessage="#{messages.nomOublie}" required="true" >
+                    <f:ajax event="blur" render="msgNom" />
+                </h:inputText>
+                <h:message id="msgNom" for="nom" errorClass="erreur" />
+                
+                <h:outputLabel value="#{messages.prenom}" > <span class="requis">*</span></h:outputLabel>
+                <h:inputText id="prenom" value="#{inscription.utilisateur.prenom}" requiredMessage="#{messages.prenomOublie}" required="true" >
+                    <f:ajax event="blur" render="msgPrenom" />
+                </h:inputText>
+                <h:message id="msgPrenom" for="prenom" errorClass="erreur"/>
+                
+                <h:outputLabel value="#{messages.mail}" > <span class="requis">*</span></h:outputLabel>
+                <h:inputText id="mail" value="#{inscription.utilisateur.mail}" requiredMessage="#{messages.mailOublie}" required="true" >
+                    <f:ajax event="blur" render="msgMail" />
+                </h:inputText>
+                <h:message id="msgMail" for="mail" errorClass="erreur"/>
+                
+                <h:outputLabel value="#{messages.login}" > <span class="requis">*</span></h:outputLabel>
+                <h:inputText id="login" value="#{inscription.utilisateur.login}" requiredMessage="#{messages.loginOublie}" required="true" >
+                    <f:ajax event="blur" render="msgLogin" />
+                </h:inputText>
+                <h:message id="msgLogin" for="login" errorClass="erreur" />
+                
+                <h:outputLabel value="#{messages.password}" > <span class="requis">*</span></h:outputLabel>
+                <h:inputSecret id="mdp" value="#{inscription.utilisateur.mdp}" binding="#{composantMdp}" requiredMessage="#{messages.mdpOublie}" required="true" >
+                    <f:ajax event="blur" execute="mdp confirmMdp" render="msgMdp" />
+                </h:inputSecret>
+                <h:message id="msgMdp" for="mdp" errorClass="erreur" />
+                
+                <h:outputLabel value="#{messages.confirmationPassword}" > <span class="requis">*</span></h:outputLabel>
+                <h:inputSecret id="confirmMdp" value="#{inscription.mdpConfirmation}" requiredMessage="#{messages.mdpOublie2}" required="true" >
+                    <f:ajax event="blur" execute="mdp confirmMdp" render="msgMdp msgConfirm " />
+                    <f:attribute name="composantMdp" value="#{composantMdp}" />
+                    <f:validator validatorId="confirmationPassword" />
+                </h:inputSecret>
+                <h:message id="msgConfirm" for="confirmMdp" errorClass="erreur" />
+                
+                <f:facet name="footer">
+                    <h:panelGroup layout="block" style="text-align: center">
+                        <h:commandButton value="#{messages.inscription}" action="#{inscription.inscription}" /><br />
+                        <h:commandLink action="/index.xhtml" value="#{messages.annuler}" immediate="true" styleClass="inscription" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+        </fieldset>
+        </h:panelGroup>
+            
+        <ui:include src="/WEB-INF/include/footer.xhtml" />
+            
+    </h:body>
+</html>
+
