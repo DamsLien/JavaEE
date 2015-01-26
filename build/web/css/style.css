@@ -2,36 +2,35 @@
     Created on : 17 janv. 2015, 18:48:49
     Author     : Damien
 */
-html{ height: 100%; }
+html{ 
+    height: 100%; 
+    
+}
 
 body{
-    
-    font-family: Montserrat, sans-serif;
     font-size: 12px;
-    margin: 0 auto;
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .background{
-    background: url("../images/background.jpg");
+    background-image: url("../images/background.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
 }
 
 /***********/
 /* En tete */
 /***********/
 .header{
-    background-color: white;
+    background-color: #F0F0F0;
     box-shadow: 0 0 0 2px lightgray;
     color: grey;
     font-family: Verdana;
-    font-size: 125%;
-    float: left;
+    font-size: 16px;
     height: 7%;
-    line-height: 300%;
     text-align: center;
     width: 100%;
 }
@@ -39,61 +38,61 @@ body{
 .titre_header{
     float: left;
     height: 100%;
-    width: 15%;
+    width: 20%;
 }
-.middle_header{
-    float: left;
-    height: 100%;
-    text-align: center;
-    width: 70%;
-}
-.connexion_header{
-    float: left;
-    height: 100%;
-    width: 15%;
-}
-.lien_header{ 
-    text-decoration: none; 
-    color: grey;
-}
-.lien_header:hover{ text-decoration: underline; }
 
+/* Onglets */
 .menu{
-    height: 95%;
-    width: 100%;
+    float: left;
+    height: 100%;
+    width: 60%;
 }
+
 .onglets{
     height: 100%;
-    list-style-type: none;
     margin: 0 auto;
     padding: 0;
-    width: 75%;
+    width: 80%;
 }
 .onglets li{
     float: left;
     height: 100%;
-    min-width: 25%;
-    max-width: 33%;
-    padding: 0;
+    list-style-type: none;
+    width: 25%;
 }
 .onglets li:hover{
-    background-color: #E0E0E0;
-    border-radius: 3px;
+    animation: linear;
     color: white;
     cursor: pointer;
-    font-weight: bold;
+    transition: all .3s .1s;
+    background-color: lightsteelblue;
 }
+
+/* Connexion et déconnexion */
+.connexion_header{
+    color: black;
+    float: left;
+    font-size: 13px;
+    height: 100%;
+    line-height: normal;
+    vertical-align: middle;
+    width: 20%;
+}
+.link_deconnexion{
+    color: black;
+    text-decoration: none;
+}
+.link_deconnexion:hover{ text-decoration: underline; }
 
 /****************/
 /* Pied de page */
 /****************/
 .footer{
-    background-color: turquoise;
-    box-shadow: 8px red;
+    background-color: #F0F0F0;
+    border-top: 2px solid lightgray;
     color: black;
     font-size: 11px;
     font-style: italic;
-    opacity: 0.7;
     padding: 0.5% 0;
     text-align: center;
     width: 100%;
@@ -102,7 +101,7 @@ body{
 /*******************************/
 /* CSS Connexion & Inscription */
 /*******************************/
-.f_connexion, .f_inscription, .central{
+.f_connexion, .f_inscription{
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid white;
     color: lightseagreen;
@@ -117,14 +116,9 @@ body{
     width: 32%;
 }
 .f_inscription{
-    margin: 0;
-    left: 31%;
-    top: 31%;
-    width: 35%;
-}
-.central{
-    min-height: 100%;
-    width: 70%;
+    left: 34%;
+    top: 28%;
+    width: 32%;
 }
 
 .tableConnexion{
@@ -142,30 +136,25 @@ body{
     text-decoration: underline;
 }
 
-/***************/
-/* Déconnexion */
-/***************/
-.deconnexion, .link_deconnexion{
-    color: black;
-    font-size: 12px;
-    line-height: normal;
-    padding-top: 4%;
-    text-decoration: none;
-}
-.link_deconnexion:hover{
-    text-decoration: underline;
+/**************************/
+/* Bloc central (général) */
+/**************************/
+.central{
+    background-color: #F0F0F0;
+    border: 2px solid lightgray;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+    width: 70%;
 }
 
 /***********/
 /* Erreurs */
 /***********/
-.erreur, .requis, .erreur_connexion{
+.erreur, .requis{
     color: red;
     font-weight: bold;
-    list-style-type: none;
-}
-.erreur_connexion{ 
-    margin: 0;
-    padding: 0;
-    text-align: center; 
+    list-style: none;
 }

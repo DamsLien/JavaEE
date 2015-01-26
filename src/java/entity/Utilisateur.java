@@ -20,7 +20,6 @@ import javax.validation.constraints.Size;
  * @author Pauline J. & Damien L.
  */
 @Entity
-@NamedQuery(name = "findAllUsers", query = "SELECT u FROM utilisateur")
 public class Utilisateur implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

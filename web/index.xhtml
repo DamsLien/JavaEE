@@ -10,43 +10,38 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <f:loadBundle basename="resources.messages" var="messages"/>
     </h:head>
-    <h:body>
-        <h:panelGroup layout="block" styleClass="background">           
-            <fieldset class="f_connexion">
-                <h:form>            
-                    <h:panelGrid columns="3" cellpadding="5" cellspacing="0" border="1" styleClass="tableConnexion">
-                        <f:facet name="header" class="erreur_connexion">
-                            <h:panelGroup layout="block">
-                                <h:messages globalOnly="true" infoClass="erreur" />
-                            </h:panelGroup>
-                        </f:facet>
+    <h:body styleClass="background">          
+        <fieldset class="f_connexion">
+            <h:form>            
+                <h:panelGrid columns="3" cellpadding="5" cellspacing="0" border="0" styleClass="tableConnexion">
+                    <f:facet name="header">
+                        <h:panelGroup layout="block" style="text-align: center">
+                            <h:messages globalOnly="true" infoClass="erreur" />
+                        </h:panelGroup>
+                    </f:facet>
 
-                        <h:outputLabel value="#{messages.login}" />
-                        <h:inputText id="login" value="#{connexion.utilisateur.login}" requiredMessage="#{messages.loginOublie}" required="true" >
-                            <f:ajax event="blur" render="loginMessage" />
-                        </h:inputText>
-                        <h:message id="loginMessage" for="login" errorClass="erreur"/>
+                    <h:outputLabel value="#{messages.login}" />
+                    <h:inputText id="login" value="#{connexion.utilisateur.login}" requiredMessage="#{messages.loginOublie}" required="true" >
+                        <f:ajax event="blur" render="loginMessage" />
+                    </h:inputText>
+                    <h:message id="loginMessage" for="login" errorClass="erreur"/>
 
-                        <h:outputLabel value="#{messages.password}" />
-                        <h:inputSecret id="pwd" value="#{connexion.utilisateur.mdp}" requiredMessage="#{messages.mdpOublie}" required="true" >
-                            <f:ajax event="blur" render="mdpMessage" />
-                        </h:inputSecret>
-                        <h:message id="mdpMessage" for="pwd" errorClass="erreur" />
+                    <h:outputLabel value="#{messages.password}" />
+                    <h:inputSecret id="pwd" value="#{connexion.utilisateur.mdp}" requiredMessage="#{messages.mdpOublie}" required="true" >
+                        <f:ajax event="blur" render="mdpMessage" />
+                    </h:inputSecret>
+                    <h:message id="mdpMessage" for="pwd" errorClass="erreur" />
 
-                        <f:facet name="footer">
-                            <h:panelGroup layout="block" style="text-align: center">
-                                <br/>
-                                <h:commandButton id="boutonConnexion" action="#{connexion.logIn}" value="#{messages.seConnecter}" /> | 
-                                <h:commandLink id="inscription" value="#{messages.inscription}" action="/inscription.xhtml" immediate="true" styleClass="inscription"/>
-                            </h:panelGroup>
-                        </f:facet>
-                    </h:panelGrid>
-                </h:form>
-            </fieldset>
-        </h:panelGroup>
-
-        <ui:include src="/WEB-INF/include/footer.xhtml" />
-
+                    <f:facet name="footer">
+                        <h:panelGroup layout="block" style="text-align: center">
+                            <br/>
+                            <h:commandButton id="boutonConnexion" action="#{connexion.logIn}" value="#{messages.seConnecter}" /> | 
+                            <h:commandLink id="inscription" value="#{messages.inscription}" action="/inscription.xhtml" immediate="true" styleClass="inscription"/>
+                        </h:panelGroup>
+                    </f:facet>
+                </h:panelGrid>
+            </h:form>
+        </fieldset>
     </h:body>
 </html>
 

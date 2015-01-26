@@ -51,13 +51,17 @@ public class Connexion implements Serializable{
         utilisateur = utilisateurDAO.checkLoginPassword(utilisateur);
         
         if(utilisateur != null){
-            try{ FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml"); }
+            FacesMessage msgError = new FacesMessage("Bonjour " + utilisateur.getPrenom()+ " " + utilisateur.getNom());
+            FacesContext.getCurrentInstance().addMessage("msgError", msgError);
+            try{
+                FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
+            }
             catch(IOException e){}
         }
         else{
-            utilisateur = new Utilisateur(); // Utile pour ne pas avoir de message null exception. Why ???
             FacesMessage msgError = new FacesMessage("Login et/ou  mot de passe erroné(s) !");
             FacesContext.getCurrentInstance().addMessage(null, msgError);
+            utilisateur = new Utilisateur();
         }
     }
     

@@ -9,25 +9,23 @@
                 Titre
             </h:panelGroup>
             
-            <h:panelGroup layout="block" styleClass="middle_header">
-                <h:panelGroup layout="block" styleClass="menu">
-                    <ul class="onglets" >
-                        <ui:fragment rendered="true"><li><h:outputText value="Rechercher"/></li></ui:fragment>
-                        <ui:fragment rendered="true"><li><h:outputText value="Mes cours" /></li></ui:fragment>
-                        <ui:fragment rendered="true"><li><h:outputText value="Mon panier" /></li></ui:fragment>
-                        <ui:fragment rendered="#{connexion.utilisateur.isAdmin}"><li ><h:outputText value="Administration" /></li></ui:fragment>
-                    </ul>
-                </h:panelGroup>
+            <h:panelGroup layout="block" styleClass="menu">
+                <ul class="onglets">
+                    <ui:fragment rendered="true"><li>Rechercher</li></ui:fragment>
+                    <ui:fragment rendered="true"><li>Mes cours</li></ui:fragment>
+                    <ui:fragment rendered="true"><li>Mon panier</li></ui:fragment>
+                    <ui:fragment rendered="#{connexion.utilisateur.isAdmin}"><li>Administration</li></ui:fragment>
+                </ul>
             </h:panelGroup>
             
             <h:panelGroup layout="block" styleClass="connexion_header">
                 <h:form>
                     <h:panelGroup layout="block" rendered="#{empty connexion.utilisateur.login}">
-                        <h:commandLink action="index.xhtml" value="Se connecter" immediate="true" styleClass="lien_header"/>
+                        <h:commandLink value="#{messages.seConnecter}" action="/index.xhtml" immediate="true" styleClass="link_deconnexion"/>
                     </h:panelGroup>
-                    <h:panelGroup layout="block" rendered="#{not empty connexion.utilisateur.login}" styleClass="deconnexion">
+                    <h:panelGroup layout="block" rendered="#{not empty connexion.utilisateur.login}">
                         #{connexion.utilisateur.prenom} #{connexion.utilisateur.nom}<br/>
-                        <h:commandLink id="deconnexion" action="#{connexion.logOut}" value="#{messages.logOut}" styleClass="link_deconnexion"/>
+                        <h:commandLink value="#{messages.logOut}" action="#{connexion.logOut()}" styleClass="link_deconnexion"/>
                     </h:panelGroup>
                 </h:form>
             </h:panelGroup>

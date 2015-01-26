@@ -9,10 +9,7 @@
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <f:loadBundle basename="resources.messages" var="messages"/>
     </h:head>
-    <h:body>
-        <ui:include src="/WEB-INF/include/header.xhtml" />
-        
-        <h:panelGroup layout="block" styleClass="background">
+    <h:body styleClass="background">
         <fieldset class="f_inscription">
         <h:form>
             <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="tableConnexion">
@@ -63,10 +60,6 @@
             </h:panelGrid>
         </h:form>
         </fieldset>
-        </h:panelGroup>
-            
-        <ui:include src="/WEB-INF/include/footer.xhtml" />
-            
     </h:body>
 </html>
 
