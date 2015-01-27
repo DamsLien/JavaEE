@@ -10,12 +10,22 @@
             </h:panelGroup>
             
             <h:panelGroup layout="block" styleClass="menu">
+                <h:form styleClass="form_onglets">
                 <ul class="onglets">
-                    <ui:fragment rendered="true"><li>Rechercher</li></ui:fragment>
-                    <ui:fragment rendered="true"><li>Mes cours</li></ui:fragment>
-                    <ui:fragment rendered="true"><li>Mon panier</li></ui:fragment>
-                    <ui:fragment rendered="#{connexion.utilisateur.isAdmin}"><li>Administration</li></ui:fragment>
+                    <ui:fragment rendered="true">
+                        <li><h:commandLink value="Rechercher" action="/WEB-INF/administrator/search.xhtml" immediate="true" /></li>
+                    </ui:fragment>
+                    <ui:fragment rendered="true">
+                        <li><h:commandLink value="Mes cours" action="/WEB-INF/administrator/myCourses.xhtml" immediate="true" /></li>
+                    </ui:fragment>
+                    <ui:fragment rendered="true">
+                        <li><h:commandLink value="Panier" action="/WEB-INF/administrator/panier.xhtml" immediate="true" /></li>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{connexion.utilisateur.isAdmin}">
+                        <li><h:commandLink value="Administration" action="/WEB-INF/administrator/listeUtilisateurs.xhtml" immediate="true" /></li>
+                    </ui:fragment>
                 </ul>
+                </h:form>
             </h:panelGroup>
             
             <h:panelGroup layout="block" styleClass="connexion_header">

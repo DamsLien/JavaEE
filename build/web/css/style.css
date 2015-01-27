@@ -47,6 +47,9 @@ body{
     height: 100%;
     width: 60%;
 }
+.form_onglets{
+    height: 100%;
+}
 
 .onglets{
     height: 100%;
@@ -66,6 +69,15 @@ body{
     cursor: pointer;
     transition: all .3s .1s;
     background-color: lightsteelblue;
+}
+
+.onglets li a{
+    color: grey;
+    text-decoration: none;
+}
+.onglets li a:hover{
+    color: white;
+    transition: all .1s .1s;
 }
 
 /* Connexion et déconnexion */
