@@ -4,13 +4,17 @@ import boundary.UtilisateurDAO;
 import entity.Utilisateur;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URI;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
 
 /**
  *
@@ -22,6 +26,7 @@ public class Connexion implements Serializable{
     @Inject
     UtilisateurDAO utilisateurDAO;
     private Utilisateur utilisateur;
+    private boolean isLogged;
     
     @PostConstruct
     public void onInit(){
@@ -43,6 +48,14 @@ public class Connexion implements Serializable{
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
+
+    public boolean isIsLogged() {
+        return isLogged;
+    }
+
+    public void setIsLogged(boolean isLogged) {
+        this.isLogged = isLogged;
+    }
     
     /**
      * Connexion au site
@@ -51,8 +64,7 @@ public class Connexion implements Serializable{
         utilisateur = utilisateurDAO.checkLoginPassword(utilisateur);
         
         if(utilisateur != null){
-            FacesMessage msgError = new FacesMessage("Bonjour " + utilisateur.getPrenom()+ " " + utilisateur.getNom());
-            FacesContext.getCurrentInstance().addMessage("msgError", msgError);
+            isLogged = true;
             try{
                 FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
             }
@@ -69,11 +81,27 @@ public class Connexion implements Serializable{
      * Déconnexion du site et retour à la page de connexion
      */
     public void logOut(){
-        ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
+        // ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        setIsLogged(false);
         try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-        }
+            String msg = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+            FacesContext.getCurrentInstance().getExternalContext().redirect(msg + "/index.xhtml");
+       }
         catch(IOException e){}
+    }
+    
+    /**
+     * Vérification qu'un utilisateur est bien log pour lui permettre l'accès aux pages
+     * @param event 
+     */
+    public void verificationLogin(ComponentSystemEvent event){
+        if(!isLogged){
+            try{
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            }
+            catch(IOException e){}
+        }
     }
     
 }

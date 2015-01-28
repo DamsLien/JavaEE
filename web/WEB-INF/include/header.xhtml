@@ -6,23 +6,29 @@
     <ui:composition>
         <h:panelGroup layout="block" styleClass="header">
             <h:panelGroup layout="block" styleClass="titre_header">
-                Titre
+                Coursorama
             </h:panelGroup>
             
             <h:panelGroup layout="block" styleClass="menu">
                 <h:form styleClass="form_onglets">
                 <ul class="onglets">
                     <ui:fragment rendered="true">
-                        <li><h:commandLink value="Rechercher" action="/WEB-INF/administrator/search.xhtml" immediate="true" /></li>
+                        <li><h:commandLink value="Rechercher" action="/administrator/search.xhtml" immediate="true" /></li>
                     </ui:fragment>
                     <ui:fragment rendered="true">
-                        <li><h:commandLink value="Mes cours" action="/WEB-INF/administrator/myCourses.xhtml" immediate="true" /></li>
+                        <li><h:commandLink value="Mes cours" action="/administrator/myCourses.xhtml" immediate="true" /></li>
                     </ui:fragment>
                     <ui:fragment rendered="true">
-                        <li><h:commandLink value="Panier" action="/WEB-INF/administrator/panier.xhtml" immediate="true" /></li>
+                        <li><h:commandLink value="Panier" action="/administrator/panier.xhtml" immediate="true" /></li>
                     </ui:fragment>
                     <ui:fragment rendered="#{connexion.utilisateur.isAdmin}">
-                        <li><h:commandLink value="Administration" action="/WEB-INF/administrator/listeUtilisateurs.xhtml" immediate="true" /></li>
+                        <li>
+                            <a href="" >Administration</a>
+                            <ul>
+                                <li><a href="#{administration.absolutePath()}/administrator/listeUtilisateurs.xhtml">Utilisateurs</a></li>
+                                <li>Cours</li>
+                            </ul>
+                        </li>
                     </ui:fragment>
                 </ul>
                 </h:form>

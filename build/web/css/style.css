@@ -4,7 +4,6 @@
 */
 html{ 
     height: 100%; 
-    
 }
 
 body{
@@ -21,81 +20,6 @@ body{
     background-size: cover;
 }
 
-/***********/
-/* En tete */
-/***********/
-.header{
-    background-color: #F0F0F0;
-    box-shadow: 0 0 0 2px lightgray;
-    color: grey;
-    font-family: Verdana;
-    font-size: 16px;
-    height: 7%;
-    text-align: center;
-    width: 100%;
-}
-
-.titre_header{
-    float: left;
-    height: 100%;
-    width: 20%;
-}
-
-/* Onglets */
-.menu{
-    float: left;
-    height: 100%;
-    width: 60%;
-}
-.form_onglets{
-    height: 100%;
-}
-
-.onglets{
-    height: 100%;
-    margin: 0 auto;
-    padding: 0;
-    width: 80%;
-}
-.onglets li{
-    float: left;
-    height: 100%;
-    list-style-type: none;
-    width: 25%;
-}
-.onglets li:hover{
-    animation: linear;
-    color: white;
-    cursor: pointer;
-    transition: all .3s .1s;
-    background-color: lightsteelblue;
-}
-
-.onglets li a{
-    color: grey;
-    text-decoration: none;
-}
-.onglets li a:hover{
-    color: white;
-    transition: all .1s .1s;
-}
-
-/* Connexion et déconnexion */
-.connexion_header{
-    color: black;
-    float: left;
-    font-size: 13px;
-    height: 100%;
-    line-height: normal;
-    vertical-align: middle;
-    width: 20%;
-}
-.link_deconnexion{
-    color: black;
-    text-decoration: none;
-}
-.link_deconnexion:hover{ text-decoration: underline; }
-
 /****************/
 /* Pied de page */
 /****************/
@@ -108,44 +32,6 @@ body{
     padding: 0.5% 0;
     text-align: center;
     width: 100%;
-}
-
-/*******************************/
-/* CSS Connexion & Inscription */
-/*******************************/
-.f_connexion, .f_inscription{
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid white;
-    color: lightseagreen;
-    font-weight: bold;
-    padding: 3% 0;
-    position: absolute;
-}
-.f_connexion{
-    left: 34%;
-    top: 38%;
-    text-align: center;
-    width: 32%;
-}
-.f_inscription{
-    left: 34%;
-    top: 28%;
-    width: 32%;
-}
-
-.tableConnexion{
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.inscription{
-    color: grey;
-    text-decoration: none;
-    font-size: 11px;
-    font-style: italic;
-}
-.inscription:hover{
-    text-decoration: underline;
 }
 
 /**************************/
@@ -161,6 +47,58 @@ body{
     min-height: 100%;
     width: 70%;
 }
+
+/*************/
+/* DataTable */
+/*************/
+.dt{
+    margin-top: 2%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 2%;
+    width: 77%;
+}
+.dt_header{
+    background-color: darkblue;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+}
+.dt_rows1, .dt_rows2{ font-size: 14px; }
+.dt_rows1{ background-color: white; }
+.dt_rows2{ background-color: lightcyan; }
+.dt_cols{ 
+    padding: 1% 1%; 
+    width: 22%;
+}
+.dt_cols_img{ 
+    text-align: center; 
+    width: 12%;
+}
+
+.dt_operations{
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+}
+.dt_operations a{
+    padding: 0 7%;
+}
+
+/***************************/
+/* Mise en page des textes */
+/***************************/
+h1{
+    background-color: white;
+    border: 3px double green;
+    margin: 3% auto;
+    padding: 2% 0;
+    text-align: center;
+    width: 80%;
+}
+
 
 /***********/
 /* Erreurs */

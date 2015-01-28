@@ -1,0 +1,125 @@
+/* 
+    Created on : 27 janv. 2015, 20:31:45
+    Author     : Damien
+*/
+.header{
+    background-color: #F0F0F0;
+    box-shadow: 0 0 0 2px lightgray;
+    color: grey;
+    font-family: Verdana;
+    font-size: 16px;
+    height: 7%;
+    text-align: center;
+    width: 100%;
+}
+
+/************************/
+/* Titre dans le header */
+/************************/
+.titre_header{
+    float: left;
+    height: 100%;
+    padding: 1% 0;
+    width: 20%;
+}
+
+/***********/
+/* Onglets */
+/***********/
+.menu{
+    float: left;
+    height: 100%;
+    width: 60%;
+}
+.form_onglets{
+    height: 100%;
+}
+
+.onglets{
+    font-size: 0;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+.onglets li{
+    display: inline-block;
+    font-size: 14px;
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 24%;
+}
+.onglets li:hover{
+    animation: linear;
+    color: white;
+    cursor: pointer;
+    transition: all .3s .1s;
+    background-color: lightsteelblue;
+}
+
+.onglets li a{
+    color: grey;
+    display: block;
+    padding: 7.7% 0;
+    text-decoration: none;
+}
+.onglets li a:hover{
+    color: white;
+    transition: all .1s .1s;
+}
+
+/* Sous-menu */
+.onglets ul{
+    margin: 0;
+    max-height: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    transition: max-height .3s ease-in-out;
+}
+.onglets li:hover ul{
+   max-height: 150px;
+}
+.onglets ul li{
+    background-color: steelblue;
+    color: lightgray;
+    display: inherit;
+    height: 50px;
+    width: 100%;
+}
+.onglets ul li:hover{ 
+    background-color: lightblue;
+    visibility: visible; 
+}
+.onglets ul li:last-child{
+    border-radius: 0 0 8px 8px;
+}
+.onglets ul li a{
+    color: lightgray;
+}
+
+
+/***************************/
+/* Connexion / Déconnexion */
+/***************************/
+.connexion_header{
+    color: black;
+    float: left;
+    font-size: 13px;
+    height: 100%;
+    line-height: normal;
+    padding-top: .5%;
+    text-align: right;
+    vertical-align: middle;
+    width: 20%;
+}
+.link_deconnexion{
+    color: black;
+    text-decoration: none;
+}
+.link_deconnexion:hover{ text-decoration: underline; }

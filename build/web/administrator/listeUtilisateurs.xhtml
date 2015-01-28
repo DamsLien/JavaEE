@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Admin - Liste des utilisateurs</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../css/header.css" />
+        <f:loadBundle basename="resources.messages" var="messages"/>
+    </h:head>
+    <h:body>
+        <ui:include src="/WEB-INF/include/header.xhtml" />
+        
+        <h:panelGroup layout="block" styleClass="central" >
+            <h1>Liste des utilisateurs inscrits</h1>
+            
+            <h:messages globalOnly="true" infoClass="erreur" />
+            
+            <h:form>
+                <h:dataTable value="#{administration.listUsers}" var="users" border="0" cellpadding="0" cellspacing="0" styleClass="dt" headerClass="dt_header" rowClasses="dt_rows1, dt_rows2" columnClasses="dt_cols, dt_cols, dt_cols, dt_cols, dt_cols_img">
+                    <h:column>
+                        <f:facet name="header">
+                            #{messages.nom}
+                        </f:facet>
+                        #{users.idUser} - #{users.nom}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{messages.prenom}
+                        </f:facet>
+                        #{users.prenom}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{messages.login}
+                        </f:facet>
+                         #{users.login}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{messages.mail}
+                        </f:facet>
+                         #{users.mail}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">&nbsp;</f:facet>
+                        <h:panelGroup layout="block" styleClass="dt_operations" >
+                            <h:commandLink action="modifyUser.xhtml"><h:graphicImage value="../images/modify.png" width="23" height="23"/></h:commandLink>
+                            <h:commandLink action="#{administration.doDelete}">
+                                <h:graphicImage value="../images/delete.png" width="23" height="23"/>
+                                <f:param name="idUser" value="#{users.idUser}" />
+                            </h:commandLink>
+                        </h:panelGroup>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+
+        <ui:include src="/WEB-INF/include/footer.xhtml" />
+    </h:body>
+</html>
+
