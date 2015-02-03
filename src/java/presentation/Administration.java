@@ -5,6 +5,7 @@ import entity.Utilisateur;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -20,7 +21,7 @@ import javax.inject.Named;
 public class Administration implements Serializable{
     @Inject
     AdminDAO adminDAO;
-    long idUtilisateur;
+    private Utilisateur utilisateur;
     private List<Utilisateur> listUsers = new ArrayList<>();
 
     public AdminDAO getAdminDAO() {
@@ -31,13 +32,14 @@ public class Administration implements Serializable{
         this.adminDAO = adminDAO;
     }
 
-    public long getIdUtilisateur() {
-        return idUtilisateur;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
-    public void setIdUtilisateur(long idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
+
       
     public List<Utilisateur> getListUsers() {
         listUsers = adminDAO.findAllUsers();
@@ -46,6 +48,11 @@ public class Administration implements Serializable{
 
     public void setListUsers(List<Utilisateur> listUsers) {
         this.listUsers = listUsers;
+    }
+    
+    @PostConstruct
+    public void onInit(){
+        utilisateur = new Utilisateur();
     }
     
     /**
@@ -61,17 +68,16 @@ public class Administration implements Serializable{
      * Suppression d'un utilisateur
      */
     public void doDelete(){
-        idUtilisateur = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idUser"));
+        utilisateur.setIdUser(Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idUser")));
         
-        if(adminDAO.deleteUser(idUtilisateur)){
-            FacesMessage msgError = new FacesMessage("Supprimé !");
+        if(adminDAO.deleteUser(utilisateur.getIdUser())){
+            FacesMessage msgError = new FacesMessage("L'utilisateur a bien été supprimé !");
             FacesContext.getCurrentInstance().addMessage(null, msgError);
-            /*try{ FacesContext.getCurrentInstance().getExternalContext().redirect("listeUtilisateurs.xhtml"); }
-            catch(Exception e){ }*/
         }
         else{
-            FacesMessage msgError = new FacesMessage("Pas supprimé !");
+            FacesMessage msgError = new FacesMessage("Une erreure est survenue. Suppression avortée !");
             FacesContext.getCurrentInstance().addMessage(null, msgError);
         }
     }
+    
 }

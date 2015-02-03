@@ -11,12 +11,13 @@
         <f:loadBundle basename="resources.messages" var="messages"/>
     </h:head>
     <h:body>
+        <ui:include src="/WEB-INF/include/access.xhtml" />
         <ui:include src="/WEB-INF/include/header.xhtml" />
         
         <h:panelGroup layout="block" styleClass="central" >
             <h1>Liste des utilisateurs inscrits</h1>
             
-            <h:messages globalOnly="true" infoClass="erreur" />
+            <h:messages globalOnly="true" infoClass="erreur" style="text-align: center; width: 100%"/>
             
             <h:form>
                 <h:dataTable value="#{administration.listUsers}" var="users" border="0" cellpadding="0" cellspacing="0" styleClass="dt" headerClass="dt_header" rowClasses="dt_rows1, dt_rows2" columnClasses="dt_cols, dt_cols, dt_cols, dt_cols, dt_cols_img">
@@ -24,7 +25,7 @@
                         <f:facet name="header">
                             #{messages.nom}
                         </f:facet>
-                        #{users.idUser} - #{users.nom}
+                        #{users.nom}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -47,8 +48,11 @@
                     <h:column>
                         <f:facet name="header">&nbsp;</f:facet>
                         <h:panelGroup layout="block" styleClass="dt_operations" >
-                            <h:commandLink action="modifyUser.xhtml"><h:graphicImage value="../images/modify.png" width="23" height="23"/></h:commandLink>
-                            <h:commandLink action="#{administration.doDelete}">
+                            <h:commandLink action="#{updateUtilisateur.listeToModify()}">
+                                <h:graphicImage value="../images/modify.png" width="23" height="23"/>
+                                <f:param name="idUser" value="#{users.idUser}" />
+                            </h:commandLink>
+                            <h:commandLink action="#{administration.doDelete}" onclick="if(!confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) return false" rendered="#{users.login != connexion.utilisateur.login}">
                                 <h:graphicImage value="../images/delete.png" width="23" height="23"/>
                                 <f:param name="idUser" value="#{users.idUser}" />
                             </h:commandLink>

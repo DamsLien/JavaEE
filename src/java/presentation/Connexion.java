@@ -4,7 +4,7 @@ import boundary.UtilisateurDAO;
 import entity.Utilisateur;
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -12,9 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
+import security.Cryptage;
 
 /**
  *
@@ -59,8 +57,12 @@ public class Connexion implements Serializable{
     
     /**
      * Connexion au site
+     * avec cryptage du mot de passe afin de le comparer à la base de données
      */
     public void logIn(){
+        Cryptage cryptage = new Cryptage();
+        try{ utilisateur.setMdp(cryptage.cryptage(utilisateur)); }
+        catch(NoSuchAlgorithmException e){ }
         utilisateur = utilisateurDAO.checkLoginPassword(utilisateur);
         
         if(utilisateur != null){
@@ -81,7 +83,6 @@ public class Connexion implements Serializable{
      * Déconnexion du site et retour à la page de connexion
      */
     public void logOut(){
-        // ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         setIsLogged(false);
         try{
@@ -98,7 +99,8 @@ public class Connexion implements Serializable{
     public void verificationLogin(ComponentSystemEvent event){
         if(!isLogged){
             try{
-                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+                String msg = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+                FacesContext.getCurrentInstance().getExternalContext().redirect(msg + "/index.xhtml");
             }
             catch(IOException e){}
         }

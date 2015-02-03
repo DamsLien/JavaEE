@@ -47,4 +47,18 @@ public class AdminDAO {
         
         return false;
     }
+    
+    public Utilisateur updateUser(long id, Utilisateur utilisateur){
+        Utilisateur u = find(id);
+        
+        if(u != null){
+            u.setNom(utilisateur.getNom());
+            u.setPrenom(utilisateur.getPrenom());
+            u.setLogin(utilisateur.getLogin());
+            u.setMail(utilisateur.getMail());
+            u.setMdp(utilisateur.getMdp());
+        }
+                
+        return u;
+    }
 }

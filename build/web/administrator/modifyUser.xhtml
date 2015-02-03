@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Admin - Modifier un utilisateur</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../css/header.css" />
+        <f:loadBundle basename="resources.messages" var="messages"/>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:event listener="#{updateUtilisateur.getFromFlash}" type="preRenderView"/>
+        </f:metadata>
+        
+        <ui:include src="/WEB-INF/include/header.xhtml" />
+
+        <h:panelGroup layout="block" styleClass="central" >
+            <h1>Modification d'un utilisateur</h1>
+              
+            <fieldset class="f_update">
+                
+                <h:form id="updateUser">
+                    <h:message for="msgError" errorClass="erreur" />
+                    <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="table">
+                        <h:outputLabel value="#{messages.nom}" />
+                        <h:inputText id="nom" value="#{updateUtilisateur.utilisateur.nom}" requiredMessage="#{messages.nomOublie}" required="true" >
+                            <f:ajax event="blur" render="msgNom" />
+                        </h:inputText>
+                        <h:message id="msgNom" for="nom" errorClass="erreur" />
+
+                        <h:outputLabel value="#{messages.prenom}" />
+                        <h:inputText id="idUser" value="#{updateUtilisateur.utilisateur.prenom}" requiredMessage="#{messages.prenomOublie}" required="true" >
+                            <f:ajax event="blur" render="msgPrenom" />
+                        </h:inputText>
+                        <h:message id="msgPrenom" for="prenom" errorClass="erreur"/>
+
+   
+
+                        <f:facet name="footer">
+                            <h:panelGroup layout="block" style="text-align: center">
+                                <h:commandButton value="#{messages.modifier}" action="#{updateUtilisateur.doModify}" />
+                            </h:panelGroup>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </fieldset>
+        </h:panelGroup>
+
+        <ui:include src="/WEB-INF/include/footer.xhtml" />
+    </h:body>
+</html>
+

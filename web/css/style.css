@@ -48,6 +48,17 @@ body{
     width: 70%;
 }
 
+/*********/
+/* Table */
+/*********/
+.table{
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 3% 0;
+    min-width: 60%;
+    max-width: 80%;
+}
+
 /*************/
 /* DataTable */
 /*************/
@@ -85,6 +96,17 @@ body{
 }
 .dt_operations a{
     padding: 0 7%;
+}
+
+/************/
+/* Fieldset */
+/************/
+.f_update{
+    background-color: rgba(255, 255, 255, .5);
+    border: 2px solid white;
+    color: turquoise;
+    margin: 0 auto;
+    width: 60%;
 }
 
 /***************************/
