@@ -3,7 +3,6 @@ package boundary;
 import entity.Utilisateur;
 import entity.Utilisateur_;
 import javax.ejb.Stateless;
-import javax.faces.application.FacesMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -76,9 +75,7 @@ public class UtilisateurDAO {
      * @param user utilisateur à inscrire dans la base
      */
     public void inscription(Utilisateur user){
-        try{
-            this.em.persist(user);
-        }
-        catch(Exception e){ }
+        try{ this.em.persist(user); }
+        catch(Exception e){ e.printStackTrace(); }
     }
 }

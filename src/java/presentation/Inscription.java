@@ -4,12 +4,14 @@ import boundary.UtilisateurDAO;
 import entity.Utilisateur;
 import java.io.IOException;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import security.Cryptage;
 
 /**
  *
@@ -53,19 +55,29 @@ public class Inscription implements Serializable{
         this.mdpConfirmation = mdpConfirmation;
     }
     
-    public void inscription(){ 
+    public void encryptage(){
+        String secure = utilisateur.getMdp();
+        try{ secure = new Cryptage().cryptage(utilisateur); }
+        catch(NoSuchAlgorithmException e){ e.printStackTrace(); }
+        utilisateur.setMdp(secure);
+    }
+    
+    public void inscription(){
+        // Mise en forme de l'identité de l'utilisateur
         String nom = utilisateur.getNom().toUpperCase();
         String prenom = utilisateur.getPrenom().toLowerCase();
         prenom = prenom.substring(0, 1).toUpperCase() + prenom.substring(1);
         
         // Le login n'existe pas, il peut être choisi
         if(!utilisateurDAO.isFind(utilisateur.getLogin())){
+            // Mise à jour des valeurs
+            encryptage();
             utilisateur.setNom(nom);
             utilisateur.setPrenom(prenom);
             utilisateur.setIsAdmin(false);
             // Insertion dans la base
             utilisateurDAO.inscription(utilisateur);
-            
+                
             try{ FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml"); }
             catch(IOException e){}
         }

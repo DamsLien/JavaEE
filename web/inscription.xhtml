@@ -41,6 +41,7 @@
                 <h:outputLabel value="#{messages.password}" > <span class="requis">*</span></h:outputLabel>
                 <h:inputSecret id="mdp" value="#{inscription.utilisateur.mdp}" binding="#{composantMdp}" requiredMessage="#{messages.mdpOublie}" required="true" >
                     <f:ajax event="blur" execute="mdp confirmMdp" render="msgMdp" />
+                    <f:validateRegex pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$" />  
                 </h:inputSecret>
                 <h:message id="msgMdp" for="mdp" errorClass="erreur" />
                 

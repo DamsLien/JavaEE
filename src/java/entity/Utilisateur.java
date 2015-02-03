@@ -40,7 +40,6 @@ public class Utilisateur implements Serializable{
     @Pattern( regexp = "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)", message = "Merci de saisir une adresse mail valide" )
     private String mail;
     @NotNull
-    @Pattern(regexp = ".*(?=.{8,})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*", message = "Mot de passe d'au moins 8 caractères")
     private String mdp;
     // Un utilisateur peut avoir plusieurs cartes de crédit
     // Si un utilisateur est supprimé, alors ces cartes de crédits aussi (CascadeType.ALL)
