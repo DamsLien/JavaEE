@@ -6,24 +6,28 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Admin - Modifier un utilisateur</title>
+        <link rel="icon" type="image/png" href="../images/logoc.png"/>
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
         <link rel="stylesheet" type="text/css" href="../css/header.css" />
         <f:loadBundle basename="resources.messages" var="messages"/>
     </h:head>
     <h:body>
         <f:metadata>
-            <f:event listener="#{updateUtilisateur.getFromFlash}" type="preRenderView"/>
+            <f:viewParam name="idUser" value="#{updateUtilisateur.utilisateur.idUser}" />
+            <f:event type="preRenderView" listener="#{updateUtilisateur.loadUser}" />
         </f:metadata>
         
         <ui:include src="/WEB-INF/include/header.xhtml" />
 
         <h:panelGroup layout="block" styleClass="central" >
             <h1>Modification d'un utilisateur</h1>
-              
+            
+            <h:messages globalOnly="true" />
+            
             <fieldset class="f_update">
-                
                 <h:form id="updateUser">
                     <h:message for="msgError" errorClass="erreur" />
+                    
                     <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="table">
                         <h:outputLabel value="#{messages.nom}" />
                         <h:inputText id="nom" value="#{updateUtilisateur.utilisateur.nom}" requiredMessage="#{messages.nomOublie}" required="true" >
@@ -32,16 +36,26 @@
                         <h:message id="msgNom" for="nom" errorClass="erreur" />
 
                         <h:outputLabel value="#{messages.prenom}" />
-                        <h:inputText id="idUser" value="#{updateUtilisateur.utilisateur.prenom}" requiredMessage="#{messages.prenomOublie}" required="true" >
+                        <h:inputText id="prenom" value="#{updateUtilisateur.utilisateur.prenom}" requiredMessage="#{messages.prenomOublie}" required="true" >
                             <f:ajax event="blur" render="msgPrenom" />
                         </h:inputText>
                         <h:message id="msgPrenom" for="prenom" errorClass="erreur"/>
-
-   
+                        
+                        <h:outputLabel value="#{messages.mail}" />
+                        <h:inputText id="mail" value="#{updateUtilisateur.utilisateur.mail}" requiredMessage="#{messages.mailOublie}" required="true" >
+                            <f:ajax event="blur" render="msgMail" />
+                        </h:inputText>
+                        <h:message id="msgMail" for="mail" errorClass="erreur"/>
+                        
+                        <h:outputLabel value="#{messages.login}" />
+                        <h:inputText id="login" value="#{updateUtilisateur.utilisateur.login}" requiredMessage="#{messages.loginOublie}" required="true" >
+                            <f:ajax event="blur" render="msgLogin" />
+                        </h:inputText>
+                        <h:message id="msgLogin" for="login" errorClass="erreur"/>   
 
                         <f:facet name="footer">
                             <h:panelGroup layout="block" style="text-align: center">
-                                <h:commandButton value="#{messages.modifier}" action="#{updateUtilisateur.doModify}" />
+                                <h:commandButton value="#{messages.modifier}" action="#{updateUtilisateur.doModify}" styleClass="button"/>
                             </h:panelGroup>
                         </f:facet>
                     </h:panelGrid>

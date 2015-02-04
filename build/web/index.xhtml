@@ -7,6 +7,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Miage - Bienvenue</title>
+        <link rel="icon" type="image/png" href="images/logoc.png"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/connexion.css" />
         <f:loadBundle basename="resources.messages" var="messages"/>
@@ -36,7 +37,7 @@
                     <f:facet name="footer">
                         <h:panelGroup layout="block" style="text-align: center">
                             <br/>
-                            <h:commandButton id="boutonConnexion" action="#{connexion.logIn}" value="#{messages.seConnecter}" /> | 
+                            <h:commandButton id="boutonConnexion" action="#{connexion.logIn}" value="#{messages.seConnecter}" styleClass="button"/> | 
                             <h:commandLink id="inscription" value="#{messages.inscription}" action="/inscription.xhtml" immediate="true" styleClass="inscription"/>
                         </h:panelGroup>
                     </f:facet>

@@ -21,7 +21,6 @@ public class UpdateUtilisateur {
     @Inject
     AdminDAO adminDAO;
     private Utilisateur utilisateur;
-    private long id;
 
     public AdminDAO getAdminDAO() {
         return adminDAO;
@@ -38,14 +37,6 @@ public class UpdateUtilisateur {
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
     
     @PostConstruct
     public void onInit(){
@@ -53,20 +44,19 @@ public class UpdateUtilisateur {
     }
     
     public String listeToModify(){
-        String url = "modifyUser?faces-redirect=true";
-        id = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idUser"));
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("id", id);
+        long idUser = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idUser"));
+        this.utilisateur.setIdUser(idUser);
         
-        return url;
+        return "modifyUser?faces-redirect=true&amp;includeViewParams=true";
     }
     
-    public void getFromFlash(ComponentSystemEvent e){
-        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-        id = (long) flash.get("id");
-        utilisateur = adminDAO.find(id);
+    public void loadUser(){
+        this.utilisateur = adminDAO.find(this.utilisateur.getIdUser());
     }
     
-    public String doModify(){
-        return "listeUtilisateurs?faces-redirect=true";
+    public void doModify(){
+        this.utilisateur = adminDAO.updateUser(utilisateur);
+        FacesMessage msgError = new FacesMessage(this.utilisateur.toString());
+        FacesContext.getCurrentInstance().addMessage(null, msgError);
     }
 }

@@ -48,17 +48,18 @@ public class AdminDAO {
         return false;
     }
     
-    public Utilisateur updateUser(long id, Utilisateur utilisateur){
-        Utilisateur u = find(id);
+    public void flush(){
+        this.em.flush();
+    }
+    
+    public Utilisateur updateUser(Utilisateur utilisateur){
+        Utilisateur u = this.find(utilisateur.getIdUser());
+        u.setNom(utilisateur.getNom());
+        u.setPrenom(utilisateur.getPrenom());
+        u.setLogin(utilisateur.getLogin());
+        u.setMail(utilisateur.getMail());
+        this.flush();
         
-        if(u != null){
-            u.setNom(utilisateur.getNom());
-            u.setPrenom(utilisateur.getPrenom());
-            u.setLogin(utilisateur.getLogin());
-            u.setMail(utilisateur.getMail());
-            u.setMdp(utilisateur.getMdp());
-        }
-                
         return u;
     }
 }

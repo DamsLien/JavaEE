@@ -6,6 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Admin - Liste des utilisateurs</title>
+        <link rel="icon" type="image/png" href="../images/logoc.png"/>
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
         <link rel="stylesheet" type="text/css" href="../css/header.css" />
         <f:loadBundle basename="resources.messages" var="messages"/>
@@ -20,7 +21,7 @@
             <h:messages globalOnly="true" infoClass="erreur" style="text-align: center; width: 100%"/>
             
             <h:form>
-                <h:dataTable value="#{administration.listUsers}" var="users" border="0" cellpadding="0" cellspacing="0" styleClass="dt" headerClass="dt_header" rowClasses="dt_rows1, dt_rows2" columnClasses="dt_cols, dt_cols, dt_cols, dt_cols, dt_cols_img">
+                <h:dataTable value="#{administration.listUsers}" var="users" border="0" cellpadding="0" cellspacing="0" styleClass="dt" headerClass="dt_header" rowClasses="dt_rows1, dt_rows2" columnClasses="dt_cols, dt_cols, dt_cols, dt_cols_mail, dt_cols_img, dt_cols_img">
                     <h:column>
                         <f:facet name="header">
                             #{messages.nom}
@@ -48,10 +49,14 @@
                     <h:column>
                         <f:facet name="header">&nbsp;</f:facet>
                         <h:panelGroup layout="block" styleClass="dt_operations" >
-                            <h:commandLink action="#{updateUtilisateur.listeToModify()}">
-                                <h:graphicImage value="../images/modify.png" width="23" height="23"/>
+                            <h:commandButton action="#{updateUtilisateur.listeToModify}" styleClass="button_modify">
                                 <f:param name="idUser" value="#{users.idUser}" />
-                            </h:commandLink>
+                            </h:commandButton>
+                        </h:panelGroup>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">&nbsp;</f:facet>
+                        <h:panelGroup layout="block" styleClass="dt_operations" >
                             <h:commandLink action="#{administration.doDelete}" onclick="if(!confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) return false" rendered="#{users.login != connexion.utilisateur.login}">
                                 <h:graphicImage value="../images/delete.png" width="23" height="23"/>
                                 <f:param name="idUser" value="#{users.idUser}" />

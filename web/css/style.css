@@ -81,11 +81,15 @@ body{
 .dt_rows2{ background-color: lightcyan; }
 .dt_cols{ 
     padding: 1% 1%; 
-    width: 22%;
+    width: 20%;
+}
+.dt_cols_mail{ 
+    padding: 1% 1%; 
+    width: 28%;
 }
 .dt_cols_img{ 
     text-align: center; 
-    width: 12%;
+    width: 6%;
 }
 
 .dt_operations{
@@ -121,6 +125,31 @@ h1{
     width: 80%;
 }
 
+/***********/
+/* Boutons */
+/***********/
+.button{
+    background-color: lightgray;
+    border: 1px solid #BBBBBB;
+    box-shadow: 6px;
+    color: #444444;
+    cursor: pointer;
+    padding: 5px 12px;
+}
+.button:hover{
+    background-color: #E2E2E2;
+    background-image: radial-gradient(white, lightgrey);
+    color: black;
+}
+
+.button_modify{
+    background: activeborder url('../images/modify.png') no-repeat top;
+    background-size: 100% 100%;
+    border: 0;
+    cursor: pointer;
+    height: 23px;
+    width: 23px;
+}
 
 /***********/
 /* Erreurs */

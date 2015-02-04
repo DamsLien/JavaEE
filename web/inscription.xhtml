@@ -6,6 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Miage - S'inscrire</title>
+        <link rel="icon" type="image/png" href="images/logoc.png"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <link rel="stylesheet" type="text/css" href="css/connexion.css" />
         <f:loadBundle basename="resources.messages" var="messages"/>
@@ -55,7 +56,7 @@
                 
                 <f:facet name="footer">
                     <h:panelGroup layout="block" style="text-align: center">
-                        <h:commandButton value="#{messages.inscription}" action="#{inscription.inscription}" /><br />
+                        <h:commandButton value="#{messages.inscription}" action="#{inscription.inscription}" styleClass="button"/><br />
                         <h:commandLink action="/index.xhtml" value="#{messages.annuler}" immediate="true" styleClass="inscription" />
                     </h:panelGroup>
                 </f:facet>

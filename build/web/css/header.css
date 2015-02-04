@@ -54,10 +54,11 @@
 }
 .onglets li:hover{
     animation: linear;
+    background-color: lightsteelblue;
+    box-shadow: 2px 2px 10px #656565;
     color: white;
     cursor: pointer;
     transition: all .3s .1s;
-    background-color: lightsteelblue;
 }
 
 .onglets li a{
