@@ -28,6 +28,7 @@
                 <h:form id="updateUser">
                     <h:message for="msgError" errorClass="erreur" />
                     
+                    <h:inputHidden value="#{updateUtilisateur.utilisateur.idUser}" />
                     <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="table">
                         <h:outputLabel value="#{messages.nom}" />
                         <h:inputText id="nom" value="#{updateUtilisateur.utilisateur.nom}" requiredMessage="#{messages.nomOublie}" required="true" >

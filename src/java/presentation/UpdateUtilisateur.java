@@ -6,8 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
-import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -54,9 +52,12 @@ public class UpdateUtilisateur {
         this.utilisateur = adminDAO.find(this.utilisateur.getIdUser());
     }
     
-    public void doModify(){
+    public String doModify(){
+        String prenom = utilisateur.getPrenom().toLowerCase();
+        this.utilisateur.setNom(this.utilisateur.getNom().toUpperCase());        
+        this.utilisateur.setPrenom(prenom.substring(0, 1).toUpperCase() + prenom.substring(1));
         this.utilisateur = adminDAO.updateUser(utilisateur);
-        FacesMessage msgError = new FacesMessage(this.utilisateur.toString());
-        FacesContext.getCurrentInstance().addMessage(null, msgError);
+        
+        return "listeUtilisateurs?faces-redirect=true";
     }
 }
