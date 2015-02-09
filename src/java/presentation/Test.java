@@ -1,77 +1,60 @@
 package presentation;
 
-import boundary.TestDAO;
-import entity.Utilisateur;
+import com.sun.javafx.Utils;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Damien
  */
 @Named
-@ViewScoped
+@RequestScoped
 public class Test implements Serializable{
-    @Inject
-    TestDAO testDAO;
-    private Utilisateur u;
-    private long idUser;
+    private Part part;
 
-    public TestDAO getTestDAO() {
-        return testDAO;
+    /*********************/
+    /* Getters & Setters */
+    /*********************/
+    public Part getPart() {
+        return part;
     }
 
-    public void setTestDAO(TestDAO testDAO) {
-        this.testDAO = testDAO;
-    }
-
-    public long getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
-    }
-
-    public Utilisateur getU() {
-        return u;
-    }
-
-    public void setU(Utilisateur u) {
-        this.u = u;
+    public void setPart(Part part) {
+        this.part = part;
     }
     
-    /***************************************************************************/    
+    /*************/
+    /* Functions */
+    /*************/
     @PostConstruct
     public void onInit(){
-        this.u = new Utilisateur();
+        this.part = null;
     }
     
-    public String redirect(long id){
-        // On récupère l'id de l'utilisateur à modifier
-        this.idUser = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idUser"));
-        // On met dans l'URL l'id récupéré
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("idUser", this.idUser);
-        return "test2?faces-redirect=true";
+    public void upload() throws IOException{
+        String pathDest = "C:\\Users\\Damien\\Documents\\Miage\\M2\\JEE\\ProjetJEE\\web\\images\\cours\\";
+        File dest2 = File.createTempFile("cours", ".jpg");
+        
+        try(InputStream input = part.getInputStream()){
+            dest2 = new File(pathDest, dest2.getName());
+            Files.copy(input, dest2.toPath());
+            
+            FacesMessage msgError = new FacesMessage(dest2.getName());
+            FacesContext.getCurrentInstance().addMessage(null, msgError);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
-    
-    public void getFromFlash(ComponentSystemEvent e){
-        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-        this.idUser = ((long) flash.get("idUser"));
-    }
-    
-    public void loadUser(){
-        Utilisateur user = testDAO.find(idUser);
-        this.u = user;
-        FacesMessage msgError = new FacesMessage(this.u.toString());
-        FacesContext.getCurrentInstance().addMessage(null, msgError);
-    }
-    
+
 }

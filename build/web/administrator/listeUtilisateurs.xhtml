@@ -6,68 +6,67 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Admin - Liste des utilisateurs</title>
-        <link rel="icon" type="image/png" href="../images/logoc.png"/>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" />
-        <link rel="stylesheet" type="text/css" href="../css/header.css" />
-        <f:loadBundle basename="resources.messages" var="messages"/>
     </h:head>
     <h:body>
-        <ui:include src="/WEB-INF/include/access.xhtml" />
-        <ui:include src="/WEB-INF/include/header.xhtml" />
         
-        <h:panelGroup layout="block" styleClass="central" >
-            <h1>Liste des utilisateurs inscrits</h1>
+        <ui:composition template="/WEB-INF/include/template.xhtml">
+            <ui:define name="htmlHead">
+                <title>Admin - Liste des utilisateurs</title>
+            </ui:define>
             
-            <h:messages globalOnly="true" infoClass="erreur" style="text-align: center; width: 100%"/>
-            
-            <h:form>
-                <h:dataTable value="#{administration.listUsers}" var="users" border="0" cellpadding="0" cellspacing="0" styleClass="dt" headerClass="dt_header" rowClasses="dt_rows1, dt_rows2" columnClasses="dt_cols, dt_cols, dt_cols, dt_cols_mail, dt_cols_img, dt_cols_img">
-                    <h:column>
-                        <f:facet name="header">
-                            #{messages.nom}
-                        </f:facet>
-                        #{users.nom}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{messages.prenom}
-                        </f:facet>
-                        #{users.prenom}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{messages.login}
-                        </f:facet>
-                         #{users.login}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{messages.mail}
-                        </f:facet>
-                         #{users.mail}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">&nbsp;</f:facet>
-                        <h:panelGroup layout="block" styleClass="dt_operations" >
-                            <h:commandButton action="#{updateUtilisateur.listeToModify}" styleClass="button_modify">
-                                <f:param name="idUser" value="#{users.idUser}" />
-                            </h:commandButton>
-                        </h:panelGroup>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">&nbsp;</f:facet>
-                        <h:panelGroup layout="block" styleClass="dt_operations" >
-                            <h:commandLink action="#{administration.doDelete}" onclick="if(!confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) return false" rendered="#{users.login != connexion.utilisateur.login}">
-                                <h:graphicImage value="../images/delete.png" width="23" height="23"/>
-                                <f:param name="idUser" value="#{users.idUser}" />
-                            </h:commandLink>
-                        </h:panelGroup>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </h:panelGroup>
+            <ui:define name="central" >
+                <ui:include src="/WEB-INF/include/accessAdmin.xhtml" />
+                <h1>Liste des utilisateurs inscrits</h1>
 
-        <ui:include src="/WEB-INF/include/footer.xhtml" />
+                <h:messages globalOnly="true" infoClass="erreur" style="text-align: center; width: 100%"/>
+
+                <h:form>
+                    <h:dataTable value="#{administration.listUsers}" var="users" border="0" cellpadding="0" cellspacing="0" styleClass="dt" headerClass="dt_header" rowClasses="dt_rows1, dt_rows2" columnClasses="dt_cols, dt_cols, dt_cols, dt_cols_mail, dt_cols_img, dt_cols_img">
+                        <h:column>
+                            <f:facet name="header">
+                                #{messages.nom}
+                            </f:facet>
+                            #{users.nom}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                #{messages.prenom}
+                            </f:facet>
+                            #{users.prenom}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                #{messages.login}
+                            </f:facet>
+                             #{users.login}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                #{messages.mail}
+                            </f:facet>
+                             #{users.mail}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">&nbsp;</f:facet>
+                            <h:panelGroup layout="block" styleClass="dt_operations" >
+                                <h:commandButton action="#{updateUtilisateur.listeToModify}" styleClass="button_modify">
+                                    <f:param name="idUser" value="#{users.idUser}" />
+                                </h:commandButton>
+                            </h:panelGroup>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">&nbsp;</f:facet>
+                            <h:panelGroup layout="block" styleClass="dt_operations" >
+                                <h:commandLink action="#{administration.doDelete}" onclick="if(!confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) return false" rendered="#{users.login != connexion.utilisateur.login}">
+                                    <h:graphicImage value="../images/delete.png" width="23" height="23"/>
+                                    <f:param name="idUser" value="#{users.idUser}" />
+                                </h:commandLink>
+                            </h:panelGroup>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

@@ -106,4 +106,26 @@ public class Connexion implements Serializable{
         }
     }
     
+    /**
+     * Vérification qu'un utilisateur est bien log pour lui permettre l'accès aux pages
+     * @param event 
+     */
+    public void accesAdmin(ComponentSystemEvent event){
+        if(!isLogged){
+            try{
+                String msg = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+                FacesContext.getCurrentInstance().getExternalContext().redirect(msg + "/index.xhtml");
+            }
+            catch(IOException e){}
+        }
+        
+        if(!utilisateur.isIsAdmin()){
+            try{
+                String msg = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+                FacesContext.getCurrentInstance().getExternalContext().redirect(msg + "/home.xhtml");
+            }
+            catch(IOException e){}
+        }
+    }
+    
 }

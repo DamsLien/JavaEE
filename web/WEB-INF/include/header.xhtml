@@ -6,27 +6,39 @@
     <ui:composition>
         <h:panelGroup layout="block" styleClass="header">
             <h:panelGroup layout="block" styleClass="titre_header">
-                Coursorama
+                Coursorama 
             </h:panelGroup>
             
             <h:panelGroup layout="block" styleClass="menu">
                 <h:form styleClass="form_onglets">
                 <ul class="onglets">
                     <ui:fragment rendered="true">
-                        <li><h:commandLink value="Rechercher" action="/administrator/search.xhtml" immediate="true" /></li>
+                        <li>
+                            <h:commandLink action="/administrator/search.xhtml" immediate="true">
+                                <i class="fa fa-home fa-lg" style="padding-right: 10px" /> Annuaires
+                            </h:commandLink>
+                        </li>
                     </ui:fragment>
                     <ui:fragment rendered="true">
-                        <li><h:commandLink value="Mes cours" action="/administrator/myCourses.xhtml" immediate="true" /></li>
+                        <li>
+                            <h:commandLink action="/administrator/myCourses.xhtml" immediate="true" >
+                                <i class="fa fa-book fa-lg" style="padding-right: 10px" /> Mes cours
+                            </h:commandLink>
+                        </li>
                     </ui:fragment>
                     <ui:fragment rendered="true">
-                        <li><h:commandLink value="Panier" action="/administrator/panier.xhtml" immediate="true" /></li>
+                        <li>
+                            <h:commandLink action="/administrator/panier.xhtml" immediate="true">
+                                <i class="fa fa-cart-arrow-down fa-lg" style="padding-right: 10px"/> Panier
+                            </h:commandLink>
+                        </li>
                     </ui:fragment>
                     <ui:fragment rendered="#{connexion.utilisateur.isAdmin}">
                         <li>
-                            <a href="" >Administration</a>
+                            <a href="" ><i class="fa fa-cog fa-lg" style="padding-right: 10px" /> Administration</a>
                             <ul>
-                                <li><a href="#{administration.absolutePath()}/administrator/listeUtilisateurs.xhtml">Utilisateurs</a></li>
-                                <li>Cours</li>
+                                <li><a href="#{cheminAbsolu.cheminAbsolu}/administrator/listeUtilisateurs.xhtml">Utilisateurs</a></li>
+                                <li><a href="#{cheminAbsolu.cheminAbsolu}/administrator/listCourses.xhtml">Cours</a></li>
                             </ul>
                         </li>
                     </ui:fragment>
@@ -36,13 +48,14 @@
             
             <h:panelGroup layout="block" styleClass="connexion_header">
                 <h:form>
-                    <h:panelGroup layout="block" rendered="#{empty connexion.utilisateur.login}">
-                        <h:commandLink value="#{messages.seConnecter}" action="/index.xhtml" immediate="true" styleClass="link_deconnexion"/>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" rendered="#{not empty connexion.utilisateur.login}">
-                        #{connexion.utilisateur.prenom} #{connexion.utilisateur.nom}<br/>
-                        <h:commandLink value="#{messages.logOut}" action="#{connexion.logOut()}" styleClass="link_deconnexion"/>
-                    </h:panelGroup>
+                    <h:commandLink action="#{connexion.logOut}" styleClass="btn_deconnexion">
+                        <h:panelGroup layout="block" styleClass="btn_deco2" >
+                            <i class="fa fa-sign-out fa-lg" />
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="btn_deco2">
+                                #{connexion.utilisateur.prenom}<br />#{connexion.utilisateur.nom}
+                        </h:panelGroup>
+                    </h:commandLink>
                 </h:form>
             </h:panelGroup>
         </h:panelGroup>

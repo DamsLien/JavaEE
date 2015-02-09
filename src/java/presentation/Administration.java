@@ -24,6 +24,9 @@ public class Administration implements Serializable{
     private Utilisateur utilisateur;
     private List<Utilisateur> listUsers = new ArrayList<>();
 
+    /*********************/
+    /* Getters & Setters */
+    /*********************/
     public AdminDAO getAdminDAO() {
         return adminDAO;
     }
@@ -50,18 +53,12 @@ public class Administration implements Serializable{
         this.listUsers = listUsers;
     }
     
+    /*************/
+    /* Fonctions */
+    /*************/
     @PostConstruct
     public void onInit(){
         utilisateur = new Utilisateur();
-    }
-    
-    /**
-     * On cherche à obtenir le chemin absolu du projet afin de pouvoir afficher
-     * les pages correctement
-     * @return le chemin absolu
-     */
-    public String absolutePath(){
-        return FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
     }
     
     /**

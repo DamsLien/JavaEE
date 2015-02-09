@@ -6,20 +6,19 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Miage - Page d'accueil</title>
-        <link rel="icon" type="image/png" href="images/logoc.png"/>
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/header.css" />
-        <f:loadBundle basename="resources.messages" var="messages"/>
     </h:head>
     <h:body>
-        <ui:include src="/WEB-INF/include/access.xhtml" />
-        <ui:include src="/WEB-INF/include/header.xhtml" />
-        
-        <h:panelGroup layout="block" styleClass="central" >
+        <ui:composition template="/WEB-INF/include/template.xhtml">
             
-        </h:panelGroup>
-
-        <ui:include src="/WEB-INF/include/footer.xhtml" />
+            <ui:define name="htmlHead">
+                <title>Miage - Page d'accueil</title>
+            </ui:define>
+            
+            <ui:define name="central" >
+                
+            </ui:define>
+            
+        </ui:composition>
     </h:body>
 </html>
 

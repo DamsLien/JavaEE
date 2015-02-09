@@ -1,11 +1,14 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -19,6 +22,8 @@ public class Episode implements Serializable{
     @Column(length = 30)
     private String nomEpisode;
     private String fichierVideo;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateEpisode;
     private boolean isRead;
     @ManyToOne
     private Cours cours;
@@ -29,9 +34,10 @@ public class Episode implements Serializable{
     public Episode() {
     }
 
-    public Episode(String nomEpisode, String fichierVideo, boolean isRead) {
+    public Episode(String nomEpisode, String fichierVideo, Date dateEpisode, boolean isRead) {
         this.nomEpisode = nomEpisode;
         this.fichierVideo = fichierVideo;
+        this.dateEpisode = dateEpisode;
         this.isRead = isRead;
     }
 
@@ -68,6 +74,14 @@ public class Episode implements Serializable{
 
     public void setCours(Cours cours) {
         this.cours = cours;
+    }
+
+    public Date getDateEpisode() {
+        return dateEpisode;
+    }
+
+    public void setDateEpisode(Date dateEpisode) {
+        this.dateEpisode = dateEpisode;
     }
 
     public boolean isIsRead() {

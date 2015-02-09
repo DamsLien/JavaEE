@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,13 +9,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Pauline J. & Damien L.
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findAllCourses", query = "SELECT c FROM Cours c"),
+    @NamedQuery(name = "sizeListCourses", query = "SELECT COUNT(c.idCours) FROM Cours c")
+})
 public class Cours implements Serializable{
     @Id
     @GeneratedValue
@@ -23,6 +32,8 @@ public class Cours implements Serializable{
     private String nomCours;
     private String description;
     private String image; // URL de l'image
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateAjout;
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, mappedBy="cours")
     private List<Episode> episodes;
     @ManyToMany(mappedBy="listeCours")
@@ -36,10 +47,11 @@ public class Cours implements Serializable{
     public Cours() {
     }
 
-    public Cours(String nomCours, String description, String image, List<Episode> episodes, double prix) {
+    public Cours(String nomCours, String description, String image, Date dateAjout, List<Episode> episodes, double prix) {
         this.nomCours = nomCours;
         this.description = description;
         this.image = image;
+        this.dateAjout = dateAjout;
         this.episodes = episodes;
         this.prix = prix;
     }
@@ -79,12 +91,28 @@ public class Cours implements Serializable{
         this.image = image;
     }
 
+    public Date getDateAjout() {
+        return dateAjout;
+    }
+
+    public void setDateAjout(Date dateAjout) {
+        this.dateAjout = dateAjout;
+    }
+
     public List<Episode> getEpisodes() {
         return episodes;
     }
 
     public void setEpisodes(List<Episode> episodes) {
         this.episodes = episodes;
+    }
+
+    public List<Utilisateur> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+        this.utilisateurs = utilisateurs;
     }
 
     public double getPrix() {
