@@ -39,4 +39,19 @@ public class CoursDAO {
     public void addCours(Cours c){
         this.em.persist(c);
     }
+    
+    /**
+     * Suppression du cours
+     * @param idCours id permettant d'identifier le cours à supprimer
+     * @return true si le cours est supprimé, false sinon
+     */
+    public boolean deleteCours(long idCours){
+        Cours cours = this.find(idCours);
+        
+        if(cours != null){
+            this.em.remove(cours);
+            return true;
+        }
+        return false;
+    }
 }

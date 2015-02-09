@@ -50,25 +50,16 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">&nbsp;</f:facet>
-                            <h:panelGroup layout="block" styleClass="dt_operations" >
-                                <h:commandLink action="#{administration.doDelete}" rendered="#{users.login != connexion.utilisateur.login}">
-                                    <h:graphicImage value="../images/add.png" width="23" height="23"/>
-                                    <f:param name="idUser" value="#{users.idUser}" />
-                                </h:commandLink>
-                            </h:panelGroup>
+                            
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">&nbsp;</f:facet>
+                            
                         </h:column>
                         <h:column>
                             <f:facet name="header">&nbsp;</f:facet>
                             <h:panelGroup layout="block" styleClass="dt_operations" >
-                                <h:commandButton action="#{updateUtilisateur.listeToModify}" styleClass="button_modify">
-                                    <f:param name="idUser" value="#{users.idUser}" />
-                                </h:commandButton>
-                            </h:panelGroup>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">&nbsp;</f:facet>
-                            <h:panelGroup layout="block" styleClass="dt_operations" >
-                                <h:commandLink action="#{administration.doDelete}" onclick="if(!confirm('Voulez-vous vraiment supprimer ce cours ?')) return false">
+                                <h:commandLink action="#{deleteCours.doDelete}" onclick="if(!confirm('Voulez-vous vraiment supprimer ce cours ?')) return false">
                                     <h:graphicImage value="../images/delete.png" width="23" height="23"/>
                                     <f:param name="idCours" value="#{cours.idCours}" />
                                 </h:commandLink>
