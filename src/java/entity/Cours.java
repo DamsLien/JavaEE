@@ -30,6 +30,7 @@ public class Cours implements Serializable{
     private long idCours;
     @Column(length = 30)
     private String nomCours;
+    @Column (length = 200)
     private String description;
     private String image; // URL de l'image
     @Temporal(TemporalType.TIMESTAMP)

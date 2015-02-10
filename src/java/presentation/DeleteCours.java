@@ -2,7 +2,11 @@ package presentation;
 
 import boundary.CoursDAO;
 import entity.Cours;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -52,6 +56,7 @@ public class DeleteCours implements Serializable{
         long id = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idCours"));
         this.cours.setIdCours(id);
         
+        // Suppression du cours + message si suppression impossible
         if(!coursDAO.deleteCours(id)){
             FacesMessage msgError = new FacesMessage("Suppression impossible ! Une erreure a été rencontrée");
             FacesContext.getCurrentInstance().addMessage(null, msgError);

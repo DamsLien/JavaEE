@@ -1,6 +1,10 @@
 package boundary;
 
 import entity.Cours;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -47,8 +51,13 @@ public class CoursDAO {
      */
     public boolean deleteCours(long idCours){
         Cours cours = this.find(idCours);
+        Path pathDelete = Paths.get("C:\\Users\\Damien\\Documents\\Miage\\M2\\JEE\\ProjetJEE\\web\\images\\cours\\" + cours.getImage());
         
         if(cours != null){
+            // Suppression de l'image (pas besoin d'encombrer le dossier)
+            try{ Files.delete(pathDelete); }
+            catch(IOException e){ e.printStackTrace(); }
+            // Suppression du cours
             this.em.remove(cours);
             return true;
         }
