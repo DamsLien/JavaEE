@@ -33,7 +33,9 @@
                             <h:message id="msgNomCours" for="nomCours" errorClass="erreur" />
                             
                             <h:outputLabel value="#{messages.description}" />
-                            <h:inputTextarea id="description" value="#{newCours.cours.description}" cols="35" rows="7" requiredMessage="#{messages.descriptionOublie}" required="true" />
+                            <h:inputTextarea id="description" value="#{newCours.cours.description}" cols="35" rows="7" requiredMessage="#{messages.descriptionOublie}" required="true" >
+                                <f:validateLength maximum="200" />
+                            </h:inputTextarea>
                             <h:message id="msgDescription" for="description" errorClass="erreur" />
                             
                             <h:outputLabel value="#{messages.price}" />

@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "findAllCourses", query = "SELECT c FROM Cours c"),
+    @NamedQuery(name = "findAllCourses", query = "SELECT c FROM Cours c ORDER BY c.nomCours ASC"),
     @NamedQuery(name = "sizeListCourses", query = "SELECT COUNT(c.idCours) FROM Cours c")
 })
 public class Cours implements Serializable{
