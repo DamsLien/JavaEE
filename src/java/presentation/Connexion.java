@@ -26,11 +26,9 @@ public class Connexion implements Serializable{
     private Utilisateur utilisateur;
     private boolean isLogged;
     
-    @PostConstruct
-    public void onInit(){
-        utilisateur = new Utilisateur();
-    }
-
+    /*********************/
+    /* Getters & Setters */
+    /*********************/
     public UtilisateurDAO getUtilisateurDAO() {
         return utilisateurDAO;
     }
@@ -53,6 +51,14 @@ public class Connexion implements Serializable{
 
     public void setIsLogged(boolean isLogged) {
         this.isLogged = isLogged;
+    }
+    
+    /*************/
+    /* Fonctions */
+    /*************/
+    @PostConstruct
+    public void onInit(){
+        utilisateur = new Utilisateur();
     }
     
     /**

@@ -21,7 +21,8 @@
                     <ui:repeat value="#{listeCours.liste}" var="liste">
                         <h:commandLink action="home?faces-redirect=true" styleClass="pgroup_img_home">
                             <h:panelGroup layout="block" styleClass="img_home">
-                                <h:graphicImage value="/images/cours/#{liste.image}" height="200" width="200"/>
+                                <h:graphicImage value="/images/cours/#{liste.image}" height="200" width="200" styleClass="display_desc" />
+                                <h:panelGroup layout="block" styleClass="desc_img">#{listeCours.troncateDescription(liste.description)}</h:panelGroup>
                             </h:panelGroup>
                             <h:panelGroup layout="block" style="margin-top: 2%; width: 100%;">
                                 #{liste.nomCours}

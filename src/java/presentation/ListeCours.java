@@ -32,6 +32,7 @@ public class ListeCours implements Serializable{
         this.coursDAO = coursDAO;
     }
 
+    // On récupère la liste des cours présents dans la BdD
     public List<Cours> getListe() {
         this.liste = coursDAO.findAll();
         return liste;
@@ -40,7 +41,6 @@ public class ListeCours implements Serializable{
     public void setListe(List<Cours> liste) {
         this.liste = liste;
     }
-
     
     /*************/
     /* Fonctions */
@@ -48,6 +48,27 @@ public class ListeCours implements Serializable{
     @PostConstruct
     public void onInit(){
         this.liste = new ArrayList();
+    }
+    
+    /**
+     * On compte le nombre d'épisodes présents pour le cours ayant l'id sécifié
+     * @param idCours identifiant du cours
+     * @return nombre d'épisodes concernant le-dit cours
+     */
+    public long nbEpisodes(long idCours){
+        return coursDAO.nbEpisode(idCours);
+    }
+    
+    /**
+     * On troncature la description si celle-ci dépasse les 1
+     * @param description
+     * @return 
+     */
+    public String troncateDescription(String description){
+        if(description.length() >= 210){
+            return description.substring(0, 200) + " (...)";
+        }
+        return description;
     }
 
 }

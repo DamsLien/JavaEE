@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="idCours" value="#{updateCours.cours.idCours}" />
+            <f:event type="preRenderView" listener="#{updateCours.loadCours}" />
+        </f:metadata>
+        
+        <ui:composition template="/WEB-INF/include/template.xhtml">
+            <ui:define name="htmlHead">
+                <title>Admin - Modification d'un cours</title>
+            </ui:define>
+            
+            <ui:define name="central" >
+                <ui:include src="/WEB-INF/include/accessAdmin.xhtml" />
+                <h1>Modification d'un cours</h1>
+                
+                <h:messages globalOnly="true" errorStyle="error" />
+                
+                <h:form enctype="multipart/form-data">
+                    <fieldset class="f_update">
+                        <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="table_cours">
+                            
+                            <h:outputLabel value="#{messages.imageCours}" />
+                            <h:inputFile id="imgCours" value="#{updateCours.cours.part}" style="color: black">
+                                <f:validator validatorId="FileUploadValidator" />
+                            </h:inputFile>
+                            <h:message id="msgImgCours" for="imgCours" errorClass="erreur" />
+                            
+                            <h:outputLabel value="#{messages.titreCours}" />
+                            <h:inputText id="nomCours" value="#{updateCours.cours.nomCours}" requiredMessage="#{messages.titreOublie}" required="true" size="26" maxlength="30" />
+                            <h:message id="msgNomCours" for="nomCours" errorClass="erreur" />
+                            
+                            <h:outputLabel value="#{messages.description}" />
+                            <h:inputTextarea id="description" value="#{updateCours.cours.description}" cols="35" rows="7" requiredMessage="#{messages.descriptionOublie}" required="true" >
+                                <f:validateLength maximum="200" />
+                            </h:inputTextarea>
+                            <h:message id="msgDescription" for="description" errorClass="erreur" />
+                            
+                            <h:outputLabel value="#{messages.price}" />
+                            <h:inputText id="prix" value="#{updateCours.cours.prix}" requiredMessage="#{messages.prixOublie}" required="true" size="5" maxlength="6"/>
+                            <h:message id="msgPrix" for="prix_payant" errorClass="erreur" />
+                            
+                            <f:facet name="footer">
+                                <h:panelGroup layout="block" style="text-align: center">
+                                    <h:commandButton value="#{messages.modifier}" action="#{updateCours.doModify}" styleClass="button" /><br />
+                                    <h:commandLink value="#{messages.annuler}" action="listCourses?faces-redirect=true" immediate="true" styleClass="cancel_link"/>
+                                </h:panelGroup>
+                            </f:facet>
+                            
+                        </h:panelGrid>
+                    </fieldset>
+                </h:form>
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

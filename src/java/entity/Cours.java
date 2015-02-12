@@ -9,21 +9,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Pauline J. & Damien L.
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "findAllCourses", query = "SELECT c FROM Cours c ORDER BY c.nomCours ASC"),
-    @NamedQuery(name = "sizeListCourses", query = "SELECT COUNT(c.idCours) FROM Cours c")
-})
+@NamedQuery(name = "findAllCourses", query = "SELECT c FROM Cours c ORDER BY c.nomCours ASC")
 public class Cours implements Serializable{
     @Id
     @GeneratedValue
@@ -41,6 +39,9 @@ public class Cours implements Serializable{
     private List<Utilisateur> utilisateurs;
     @Column(precision = 2)
     private double prix;
+    
+    @Transient
+    private Part part;
 
     /****************/
     /* Constructors */
@@ -124,6 +125,14 @@ public class Cours implements Serializable{
         this.prix = prix;
     }
 
+    public Part getPart() {
+        return part;
+    }
+
+    public void setPart(Part part) {
+        this.part = part;
+    }
+    
     /*************/
     /* Functions */
     /*************/

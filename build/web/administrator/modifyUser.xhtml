@@ -51,6 +51,7 @@
                             <h:outputLabel value="#{messages.login}" />
                             <h:inputText id="login" value="#{updateUtilisateur.utilisateur.login}" requiredMessage="#{messages.loginOublie}" required="true" >
                                 <f:ajax event="blur" render="msgLogin" />
+                                <f:validator validatorId="ExistenceEmailValidator" />
                             </h:inputText>
                             <h:message id="msgLogin" for="login" errorClass="erreur"/>   
 

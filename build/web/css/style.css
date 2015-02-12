@@ -83,11 +83,28 @@ body{
     height: 200px;
     margin: 0;
     padding: 0;
+    width: 200px;
 }
 .img_home:hover{
     box-shadow: 1px 1px 10px #666;
 }
 
+.display_desc:hover{
+    color: black;
+    line-height: 200px;
+    opacity: 0.3;
+    z-index: 1;
+}
+.img_home .desc_img{ visibility: hidden; }
+.img_home:hover .desc_img{ 
+    color: black;
+    font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+    font-size: 13px;
+    margin-top: -200px;
+    vertical-align: middle;
+    visibility: visible; 
+    z-index: 2;
+}
 
 /*********/
 /* Table */

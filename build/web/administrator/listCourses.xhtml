@@ -43,6 +43,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Episodes</f:facet>
+                            #{listeCours.nbEpisodes(cours.idCours)}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Prix</f:facet>
@@ -54,7 +55,11 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">&nbsp;</f:facet>
-                            
+                            <h:panelGroup layout="block" styleClass="dt_operations" >
+                                <h:commandButton action="#{updateCours.listeToModify}" styleClass="button_modify">
+                                    <f:param name="idCours" value="#{cours.idCours}" />
+                                </h:commandButton>
+                            </h:panelGroup>
                         </h:column>
                         <h:column>
                             <f:facet name="header">&nbsp;</f:facet>
