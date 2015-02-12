@@ -30,12 +30,15 @@
                 <h:outputLabel value="#{messages.mail}" > <span class="requis">*</span></h:outputLabel>
                 <h:inputText id="mail" value="#{inscription.utilisateur.mail}" requiredMessage="#{messages.mailOublie}" required="true" >
                     <f:ajax event="blur" render="msgMail" />
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                    <f:validator binding="#{existenceEmailValidator}" />
                 </h:inputText>
                 <h:message id="msgMail" for="mail" errorClass="erreur"/>
                 
                 <h:outputLabel value="#{messages.login}" > <span class="requis">*</span></h:outputLabel>
                 <h:inputText id="login" value="#{inscription.utilisateur.login}" requiredMessage="#{messages.loginOublie}" required="true" >
                     <f:ajax event="blur" render="msgLogin" />
+                    <f:validator binding="#{existenceLoginValidator}" />
                 </h:inputText>
                 <h:message id="msgLogin" for="login" errorClass="erreur" />
                 
@@ -50,7 +53,7 @@
                 <h:inputSecret id="confirmMdp" value="#{inscription.mdpConfirmation}" requiredMessage="#{messages.mdpOublie2}" required="true" >
                     <f:ajax event="blur" execute="mdp confirmMdp" render="msgMdp msgConfirm " />
                     <f:attribute name="composantMdp" value="#{composantMdp}" />
-                    <f:validator validatorId="confirmationPassword" />
+                    <f:validator validatorId="ConfirmationPassword" />
                 </h:inputSecret>
                 <h:message id="msgConfirm" for="confirmMdp" errorClass="erreur" />
                 

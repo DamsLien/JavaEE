@@ -52,7 +52,7 @@ public class UtilisateurDAO {
      * @param login login a rechercher dans la base de donnees
      * @return true si le login est trouve, false sinon
      */
-    public boolean isFind(String login){
+    public Utilisateur findByLogin(String login){
         CriteriaBuilder cb = this.em.getCriteriaBuilder();
         CriteriaQuery<Utilisateur> cq = cb.createQuery(Utilisateur.class);
         Root<Utilisateur> root = cq.from(Utilisateur.class);
@@ -60,14 +60,35 @@ public class UtilisateurDAO {
         cq.where(condition);
         cq.select(root);
         TypedQuery<Utilisateur> tq = this.em.createQuery(cq);
-        
         try{
-            tq.getSingleResult();
+            Utilisateur u = tq.getSingleResult();
+            return u;
         }
-        catch(NoResultException e){ 
-            return false;
+        catch(NoResultException e){
+            return null;
         }
-        return true;
+    }
+    
+    /**
+     * Recherche l'existence d'una adresse email
+     * @param email email dont on veut savoir si elle existe
+     * @return l'utilisateur ayant la dite adresse mail
+     */
+    public Utilisateur findByEmail(String email){
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+        CriteriaQuery<Utilisateur> cq = cb.createQuery(Utilisateur.class);
+        Root<Utilisateur> root = cq.from(Utilisateur.class);
+        Predicate condition = cb.like(root.get(Utilisateur_.mail), email);
+        cq.where(condition);
+        cq.select(root);
+        TypedQuery<Utilisateur> tq = this.em.createQuery(cq);
+        try{
+            Utilisateur u = tq.getSingleResult();
+            return u;
+        }
+        catch(NoResultException e){
+            return null;
+        }
     }
     
     /**
