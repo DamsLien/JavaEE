@@ -2,10 +2,12 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,21 +26,21 @@ public class Episode implements Serializable{
     private String fichierVideo;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateEpisode;
-    private boolean isRead;
     @ManyToOne
     private Cours cours;
-
+    @ManyToMany(mappedBy="listeEpisodes")
+    private List<Utilisateur> listeUtilisateurs;
+    
     /****************/
     /* Constructors */
     /****************/
     public Episode() {
     }
 
-    public Episode(String nomEpisode, String fichierVideo, Date dateEpisode, boolean isRead) {
+    public Episode(String nomEpisode, String fichierVideo, Date dateEpisode) {
         this.nomEpisode = nomEpisode;
         this.fichierVideo = fichierVideo;
         this.dateEpisode = dateEpisode;
-        this.isRead = isRead;
     }
 
     /*********************/
@@ -84,19 +86,11 @@ public class Episode implements Serializable{
         this.dateEpisode = dateEpisode;
     }
 
-    public boolean isIsRead() {
-        return isRead;
-    }
-
-    public void setIsRead(boolean isRead) {
-        this.isRead = isRead;
-    }
-
     /*************/
     /* Functions */
     /*************/
     @Override
     public String toString() {
-        return "Episode{" + "idEpisode=" + idEpisode + ", nomEpisode=" + nomEpisode + ", fichierVideo=" + fichierVideo + ", isRead=" + isRead + ", cours=" + cours + '}';
+        return "Episode{" + "idEpisode=" + idEpisode + ", nomEpisode=" + nomEpisode + ", fichierVideo=" + fichierVideo + ", cours=" + cours + '}';
     }
 }

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="idCours" value="#{newEpisode.cours.idCours}" />
+        </f:metadata>
+        
+        <ui:composition template="/WEB-INF/include/template.xhtml">
+            <ui:define name="htmlHead">
+                <title>Admin - Nouvel episode</title>
+            </ui:define>
+            
+            <ui:define name="central" >
+                <ui:include src="/WEB-INF/include/accessAdmin.xhtml" />
+                <h1>Ajout d'un nouvel épisode</h1>
+                
+                <h:messages globalOnly="true" errorClass="error" />
+                
+                <h:form>
+                    <fieldset class="f_update">
+                        <h:inputHidden value="#{newEpisode.cours.idCours}" />
+                        <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="table_cours">
+                                                        
+                            <h:outputLabel value="#{messages.titreEpisode}" />
+                            <h:inputText id="nomEpisode" value="#{newEpisode.episode.nomEpisode}" requiredMessage="#{messages.titreOublie}" required="true" size="20" maxlength="30" >
+                                <f:ajax event="blur" render="msgNomEpisode"/>
+                            </h:inputText>
+                            <h:message id="msgNomEpisode" for="nomEpisode" errorClass="erreur" />
+                            
+                            <h:outputLabel value="#{messages.video}" />
+                            <h:inputText id="video" value="#{newEpisode.episode.fichierVideo}" requiredMessage="#{messages.videoOublie}" required="true" size="26">
+                                <f:ajax event="blur" render="msgVideo"/>
+                                <f:ajax event="blur" render="displayVideo" listener="#{newEpisode.formatURL}"/>
+                            </h:inputText>
+                            <h:message id="msgVideo" for="video" errorClass="erreur" />
+                            
+                            <h:outputLabel value="" />
+                            <h:panelGroup layout="block" id="displayVideo" >
+                                <iframe width="300" height="150" src="#{newEpisode.episode.fichierVideo}" frameborder="0" allowfullscreen="false" />
+                            </h:panelGroup>
+                            <h:outputLabel value="" />
+                            
+                            <f:facet name="footer">
+                                <h:panelGroup layout="block" style="text-align: center">
+                                    <h:commandButton value="#{messages.ajouter}" action="#{newEpisode.doAjouter}" styleClass="button" /><br />
+                                    <h:commandLink value="#{messages.annuler}" action="listCourses?faces-redirect=true" immediate="true" styleClass="cancel_link"/>
+                                </h:panelGroup>
+                            </f:facet>
+                            
+                        </h:panelGrid>
+                    </fieldset>
+                </h:form>
+                    
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

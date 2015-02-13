@@ -10,12 +10,14 @@
     <h:body>
         <f:metadata>
             <f:viewParam name="idCours" value="#{updateCours.cours.idCours}" />
+            <f:viewParam name="idCours" value="#{listeEpisodes.cours.idCours}" />
             <f:event type="preRenderView" listener="#{updateCours.loadCours}" />
         </f:metadata>
         
         <ui:composition template="/WEB-INF/include/template.xhtml">
             <ui:define name="htmlHead">
                 <title>Admin - Modification d'un cours</title>
+                <link rel="stylesheet" type="text/css" href="#{cheminAbsolu.cheminAbsolu}/css/episode.css" />
             </ui:define>
             
             <ui:define name="central" >
@@ -25,9 +27,8 @@
                 <h:messages globalOnly="true" errorStyle="error" />
                 
                 <h:form enctype="multipart/form-data">
-                    <fieldset class="f_update">
+                    <fieldset class="f_update">                        
                         <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="table_cours">
-                            
                             <h:outputLabel value="#{messages.imageCours}" />
                             <h:inputFile id="imgCours" value="#{updateCours.cours.part}" style="color: black">
                                 <f:validator validatorId="FileUploadValidator" />
@@ -56,7 +57,24 @@
                             </f:facet>
                             
                         </h:panelGrid>
+                        
+                        <h:panelGroup layout="block" styleClass="conteneur_episodes">
+                        <ui:repeat value="#{listeEpisodes.episodes}" var="episodes">
+                            <h:panelGroup styleClass="conteneur_video">
+                                <iframe src="#{episodes.fichierVideo}?start=60&amp;end=90&amp;autoplay=0&amp;controls=0" height="100" width="150" frameborder="0" allowfullscreen="false"/><br/>
+                                #{episodes.nomEpisode}<br />#{episodes.dateEpisode}<br />
+                                <h:commandLink action="a" styleClass="icon_episode">
+                                    <h:graphicImage value="../images/modify.png" height="20" width="20"/>
+                                </h:commandLink>
+                                <h:commandLink action="b" styleClass="icon_episode">
+                                    <h:graphicImage value="../images/delete.png" height="20" width="20"/>
+                                </h:commandLink>
+                            </h:panelGroup>
+                        </ui:repeat>
+                        </h:panelGroup>
+                        
                     </fieldset>
+                    
                 </h:form>
             </ui:define>
             

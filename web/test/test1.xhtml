@@ -15,19 +15,7 @@
             </ui:define>
             
             <ui:define name="central" >    
-                <h:messages globalOnly="true" />
-                
-                <h:form enctype="multipart/form-data">
-                    <h:outputLabel value="#{messages.imageCours}" /> 
-                    <h:inputFile id="imgCours" value="#{test.part}" required="true" requiredMessage="Pas d'image">
-                        <f:ajax execute="imgCours" event="change" render="msgImgCours"/>
-                        <f:validator validatorId="FileUploadValidator" />
-                    </h:inputFile>
-                    <h:message id="msgImgCours" for="imgCours" errorClass="erreur" />
-
-                    <br />
-                    <h:commandButton value="#{messages.ajouter}" action="#{test.upload()}" styleClass="button"/>
-                </h:form>
+                #{listeEpisodes.episodes}
             </ui:define>
             
         </ui:composition>

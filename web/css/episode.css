@@ -1,0 +1,23 @@
+/* 
+    Created on : 13 févr. 2015, 18:23:47
+    Author     : Damien
+*/
+
+/* Affichage des episodes modifiables */
+.conteneur_episodes{
+    margin: 0 auto;
+    width: 90%;
+}
+
+.conteneur_video{
+    color: black;
+    float: left;
+    margin: 0;
+    padding: 5px 1%;
+    text-align: center;
+}
+
+.icon_episode{
+    margin: 0;
+    padding: 2% 8%;
+}

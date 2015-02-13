@@ -48,6 +48,8 @@ public class Utilisateur implements Serializable{
     private List<CreditCard> cb;
     @ManyToMany
     private List<Cours> listeCours;
+    @ManyToMany
+    private List<Episode> listeEpisodes;
     @NotNull
     private boolean isAdmin;
 
@@ -146,6 +148,14 @@ public class Utilisateur implements Serializable{
 
     public void setListeCours(List<Cours> listeCours) {
         this.listeCours = listeCours;
+    }
+
+    public List<Episode> getListeEpisodes() {
+        return listeEpisodes;
+    }
+
+    public void setListeEpisodes(List<Episode> listeEpisodes) {
+        this.listeEpisodes = listeEpisodes;
     }
     
     public boolean isIsAdmin() {

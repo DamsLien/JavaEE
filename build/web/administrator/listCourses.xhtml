@@ -28,7 +28,7 @@
                         <h2>Il n'y a aucun cours</h2>
                     </h:panelGroup>
                     
-                    <h:dataTable value="#{listeCours.liste}" var="cours" rendered="#{not empty listeCours.liste}" cellpadding="0" cellspacing="0" styleClass="dt" headerClass="dt_header" rowClasses="dt_rows1, dt_rows2" columnClasses="dt_cols_pic, dt_cols2, dt_cols_desc, dt_cols_centre, dt_cols_centre, dt_cols_centre, dt_cols_img, dt_cols_img, dt_cols_img">
+                    <h:dataTable value="#{listeCours.liste}" var="cours" rendered="#{not empty listeCours.liste}" cellpadding="0" cellspacing="0" styleClass="dt" headerClass="dt_header" rowClasses="dt_rows_cours1, dt_rows_cours2" columnClasses="dt_cols_pic, dt_cols2, dt_cols_desc, dt_cols_centre, dt_cols_centre, dt_cols_centre, dt_cols_img, dt_cols_img, dt_cols_img">
                         <h:column>
                             <f:facet name="header">&nbsp;</f:facet>
                             <h:graphicImage value="/images/cours/#{cours.image}" height="100px" width="150px" />
@@ -51,7 +51,11 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">&nbsp;</f:facet>
-                            
+                            <h:panelGroup layout="block" styleClass="dt_operations" >
+                                <h:commandButton action="#{newEpisode.listeToNewEpisode}" styleClass="button_new">
+                                    <f:param name="idCours" value="#{cours.idCours}" />
+                                </h:commandButton>
+                            </h:panelGroup>
                         </h:column>
                         <h:column>
                             <f:facet name="header">&nbsp;</f:facet>

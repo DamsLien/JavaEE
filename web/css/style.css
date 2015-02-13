@@ -146,9 +146,11 @@ body{
 .dt_header:first-child{ border-top-left-radius: 4px}
 .dt_header:last-child{ border-top-right-radius: 4px}
 
-.dt_rows1, .dt_rows2{ font-size: 14px;}
-.dt_rows1{ background-color: white; }
-.dt_rows2{ background-color: lightskyblue; }
+.dt_rows1, .dt_rows2, .dt_rows_cours1, .dt_rows_cours2{font-size: 14px;}
+.dt_rows1, .dt_rows_cours1{ background-color: white; }
+.dt_rows2, .dt_rows_cours2{ background-color: lightskyblue; }
+.dt_rows_cours1, .dt_rows_cours2{ cursor: pointer; }
+
 .dt_cols{ 
     padding: 1% 1%; 
     width: 20%;
@@ -243,6 +245,15 @@ h2, .aucun{
 
 .button_modify{
     background: transparent url('../images/modify.png') no-repeat top;
+    background-size: 100% 100%;
+    border: 0;
+    cursor: pointer;
+    height: 23px;
+    width: 23px;
+}
+
+.button_new{
+    background: transparent url('../images/add.png') no-repeat top;
     background-size: 100% 100%;
     border: 0;
     cursor: pointer;
