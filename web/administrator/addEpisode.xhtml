@@ -37,7 +37,7 @@
                             <h:outputLabel value="#{messages.video}" />
                             <h:inputText id="video" value="#{newEpisode.episode.fichierVideo}" requiredMessage="#{messages.videoOublie}" required="true" size="26">
                                 <f:ajax event="blur" render="msgVideo"/>
-                                <f:ajax event="blur" render="displayVideo" listener="#{newEpisode.formatURL}"/>
+                                <f:ajax event="change" render="displayVideo" listener="#{newEpisode.formatURL}"/>
                             </h:inputText>
                             <h:message id="msgVideo" for="video" errorClass="erreur" />
                             

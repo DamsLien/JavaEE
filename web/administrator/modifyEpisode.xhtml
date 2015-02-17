@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="idEpisode" value="#{updateEpisode.episode.idEpisode}" />
+            <f:event type="preRenderView" listener="#{updateEpisode.loadEpisode}"/>
+        </f:metadata>
+        
+        <ui:composition template="/WEB-INF/include/template.xhtml">
+            <ui:define name="htmlHead">
+                <title>Admin - Modification d'un episode</title>
+            </ui:define>
+            
+            <ui:define name="central" >
+                <ui:include src="/WEB-INF/include/accessAdmin.xhtml" />
+                <h1>Modification d'un nouvel épisode</h1>
+                
+                <h:messages globalOnly="true" errorClass="error" />
+                
+                <h:form>
+                    <fieldset class="f_update">
+                        <h:inputHidden value="#{updateEpisode.episode.idEpisode}" />
+                        <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="table_cours">
+                                                        
+                            <h:outputLabel value="#{messages.titreEpisode}" />
+                            <h:inputText id="nomEpisode" value="#{updateEpisode.episode.nomEpisode}" requiredMessage="#{messages.titreOublie}" required="true" size="20" maxlength="30" >
+                                <f:ajax event="blur" render="msgNomEpisode"/>
+                            </h:inputText>
+                            <h:message id="msgNomEpisode" for="nomEpisode" errorClass="erreur" />
+                            
+                            <h:outputLabel value="#{messages.video}" />
+                            <h:inputText id="video" value="#{updateEpisode.episode.fichierVideo}" requiredMessage="#{messages.videoOublie}" required="true" size="26">
+                                <f:ajax event="blur" render="msgVideo"/>
+                                <f:ajax event="blur" render="displayVideo" listener="#{updateEpisode.formatURL}"/>
+                            </h:inputText>
+                            <h:message id="msgVideo" for="video" errorClass="erreur" />
+                            
+                            <h:outputLabel value="" />
+                            <h:panelGroup layout="block" id="displayVideo" >
+                                ------------ #{updateEpisode.episode.fichierVideo} ----------
+                                <iframe width="300" height="150" src="#{updateEpisode.episode.fichierVideo}" frameborder="0" allowfullscreen="false" />
+                            </h:panelGroup>
+                            <h:outputLabel value="" />
+                            
+                            <f:facet name="footer">
+                                <h:panelGroup layout="block" style="text-align: center">
+                                    <h:commandButton value="#{messages.modifier}" action="#{updateEpisode.doModify}" styleClass="button" /><br />
+                                    <h:commandLink value="#{messages.annuler}" action="#{updateEpisode.backToCours()}" styleClass="cancel_link" >
+                                        <f:param name="idCours" value="#{updateEpisode.episode.cours.idCours}" />
+                                    </h:commandLink>
+                                </h:panelGroup>
+                            </f:facet>
+                            
+                        </h:panelGrid>
+                    </fieldset>
+                </h:form>
+                    
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

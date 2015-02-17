@@ -55,7 +55,7 @@ public class UpdateCours {
     }
     
     public void loadCours(){
-        this.cours = coursDAO.find(this.cours.getIdCours());
+       this.cours = coursDAO.find(this.cours.getIdCours());
     }
     
     public String doModify(){

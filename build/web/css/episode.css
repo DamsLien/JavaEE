@@ -13,11 +13,21 @@
     color: black;
     float: left;
     margin: 0;
-    padding: 5px 1%;
+    padding: 5px 0.5%;
     text-align: center;
 }
 
 .icon_episode{
     margin: 0;
     padding: 2% 8%;
+}
+
+.hr_episode{
+    border: 1px solid lightgray;
+    margin-top: 0;
+    margin-bottom: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    width: 75%;
 }

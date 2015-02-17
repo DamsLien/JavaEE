@@ -149,7 +149,6 @@ body{
 .dt_rows1, .dt_rows2, .dt_rows_cours1, .dt_rows_cours2{font-size: 14px;}
 .dt_rows1, .dt_rows_cours1{ background-color: white; }
 .dt_rows2, .dt_rows_cours2{ background-color: lightskyblue; }
-.dt_rows_cours1, .dt_rows_cours2{ cursor: pointer; }
 
 .dt_cols{ 
     padding: 1% 1%; 

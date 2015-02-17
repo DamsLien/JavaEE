@@ -3,20 +3,21 @@ package presentation;
 import boundary.EpisodeDAO;
 import entity.Cours;
 import entity.Episode;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
  * @author Damien
  */
-@Named
-@RequestScoped
-public class ListeEpisodes {
+@ManagedBean
+@ViewScoped
+public class ListeEpisodes implements Serializable{
     @Inject
     EpisodeDAO episodeDAO;
     private Cours cours;
@@ -58,5 +59,5 @@ public class ListeEpisodes {
         this.cours = new Cours();
         this.episodes = new ArrayList<>();
     }
-    
+
 }

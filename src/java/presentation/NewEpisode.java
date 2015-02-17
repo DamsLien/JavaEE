@@ -88,6 +88,7 @@ public class NewEpisode {
         // autoplay=0 : l'utilisateur doit lancer la vidéo
         // controls=0 : reculer/avancer impossible
         this.episode.setFichierVideo(url + "?start=60&amp;end=90&amp;autoplay=0&amp;controls=0");
+        System.out.println("************ " + this.episode);
     }
     
     /**
