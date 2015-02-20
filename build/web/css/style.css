@@ -70,41 +70,6 @@ body{
     padding: 0;
     width: 93%;
 }
-.pgroup_img_home{
-    color: #428bca;
-    float: left;
-    font-size: 16px;
-    margin: 1%;
-    text-align: center;
-    text-decoration: none;
-}
-.img_home{
-    box-shadow: 0 1px 2px 0 #555;
-    height: 200px;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-}
-.img_home:hover{
-    box-shadow: 1px 1px 10px #666;
-}
-
-.display_desc:hover{
-    color: black;
-    line-height: 200px;
-    opacity: 0.3;
-    z-index: 1;
-}
-.img_home .desc_img{ visibility: hidden; }
-.img_home:hover .desc_img{ 
-    color: black;
-    font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
-    font-size: 13px;
-    margin-top: -200px;
-    vertical-align: middle;
-    visibility: visible; 
-    z-index: 2;
-}
 
 /*********/
 /* Table */
@@ -131,7 +96,7 @@ body{
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 2%;
-    width: 77%;
+    width: 79%;
 }
 .dt_header{
     background-color: #428bca;
@@ -176,10 +141,13 @@ body{
     padding: 0.75% 0.75% 0.3% 0.75%;
     width: 24%;
 }
+.dt_cols2{
+    width: 16%;
+}
 .dt_cols_desc{
     padding: 1% 0;
     text-align: justify;
-    width: 32%;
+    width: 30%;
 }
 .dt_cols_centre{
     text-align: center;
@@ -286,4 +254,84 @@ h2, .aucun{
     color: red;
     font-weight: bold;
     list-style: none;
+}
+
+
+/***********************/
+/* Image de l'annuaire */
+/***********************/
+.pgroup_img_home{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px 1px #b9b1a8;
+    color: #005275;
+    float: left;
+    font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+    font-size: 15px;
+    height: 190px;
+    margin: 10px;
+    padding: 9px 13px 7px 13px;
+    text-decoration: none;
+    width: 28%;
+    word-wrap: break-word;
+    z-index: 1;
+}
+.pgroup_img_home:hover{
+    color: #1c6ea0;
+}
+
+.img_titre_home{
+    height: 25px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+
+.img_home{
+    height: 150px;
+    max-width: 100%;
+}
+.pgroup_img_home:hover .img_home{
+    opacity: 0;
+}
+
+.desc_img{ 
+    color: grey;
+    font-family: Verdana;
+    font-size: 12px;
+    line-height: 20px;
+    height: 120px;
+    visibility: hidden; 
+}
+.pgroup_img_home:hover .desc_img{
+    margin-top: -155px;
+    visibility: visible;
+    z-index: 2;
+}
+
+.prix_img{
+    color: red;
+    float: left;
+    font-size: 16px;
+    margin-left: 20px;
+    padding: 7px 10px;
+    visibility: hidden;
+}
+
+.plus_infos{
+    background: linear-gradient(to bottom, #6dbe4a 0%,#6dbe4a 50%,#64ae43 51%,#64ae43 100%);
+    border-radius: 4px;
+    color: white;
+    float: right;
+    font-family: 'Verdana';
+    font-size: 12px;
+    margin-right: 20px;
+    padding: 7px 10px;
+    visibility: hidden;
+}
+.plus_infos:hover{
+   background: linear-gradient(to bottom, #64ae43 0%,#64ae43 50%,#6dbe4a 51%,#6dbe4a 100%);
+}
+.pgroup_img_home:hover .prix_img, .pgroup_img_home:hover .plus_infos{
+    visibility: visible;
+    z-index: 99;
 }

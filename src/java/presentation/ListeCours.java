@@ -70,5 +70,43 @@ public class ListeCours implements Serializable{
         }
         return description;
     }
+    
+    /**
+     * Convertir le point d'un double en sigle €
+     * On supprime également les 0 inutiles après la virgule
+     * @param prix prix à formater
+     * @return le prix avec le sigle € et retiré des 0 inutiles
+     */
+    public String sigleEuro(double prix){
+        String valeur = "Gratuit";
+        if(prix > 0.00){ 
+            valeur = Double.toString(prix).replace(".", "€"); 
+            int euro = valeur.indexOf("€");
+            if(valeur.substring(euro).equals("€0")){ valeur = valeur.substring(0, euro+1); }
+        }
+        
+        return valeur;
+    }
 
+    /**
+     * Listing de tous les cours
+     * Utile pour la gestion de ces derniers (partie Admin.)
+     */
+    public void listAllCours(){
+        this.liste = coursDAO.findAll();
+    }
+
+    /**
+     * Listing des cours ayant au moins un épisode
+     * Permet de ne pas afficher les cours sans épisodes
+     */
+    public void listWithEpisode(){
+        List<Cours> alc = coursDAO.findAll();
+        
+        for(Cours c : alc){
+            if(coursDAO.nbEpisode(c.getIdCours()) > 0){
+                this.liste.add(c);
+            }
+        }
+    }
 }

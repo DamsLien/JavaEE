@@ -87,8 +87,7 @@ public class NewEpisode {
         // start=60&end=90 : Video commencant à 1min et se fini à 1min30 (pour faire un extrait 
         // autoplay=0 : l'utilisateur doit lancer la vidéo
         // controls=0 : reculer/avancer impossible
-        this.episode.setFichierVideo(url + "?start=60&amp;end=90&amp;autoplay=0&amp;controls=0");
-        System.out.println("************ " + this.episode);
+        this.episode.setFichierVideo(url + "?start=60&amp;end=90&amp;autoplay=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3");
     }
     
     /**

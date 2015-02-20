@@ -65,8 +65,8 @@
                         <h:panelGroup layout="block" styleClass="conteneur_episodes">
                             <ui:repeat value="#{listeEpisodes.episodes}" var="episodes">
                                 <h:panelGroup styleClass="conteneur_video">
-                                    <iframe src="#{episodes.fichierVideo}?start=60&amp;end=90&amp;autoplay=0&amp;controls=0" height="100" width="150" frameborder="0" allowfullscreen="false"/><br/>
-                                    #{episodes.nomEpisode}<br />#{episodes.dateEpisode}<br />
+                                    <iframe src="#{episodes.fichierVideo}?start=60&amp;end=90&amp;autoplay=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3" height="100" width="150" frameborder="0" allowfullscreen="false"/><br/>
+                                    #{episodes.nomEpisode}<br />#{dateFrancaise.dateEN_FR(episodes.dateEpisode)}<br />
                                     <h:commandLink action="#{updateEpisode.listeToModify}" styleClass="icon_episode">
                                         <h:graphicImage value="../images/modify.png" height="20" width="20"/>
                                         <f:param name="idEpisode" value="#{episodes.idEpisode}" />

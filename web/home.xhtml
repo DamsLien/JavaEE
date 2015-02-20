@@ -7,7 +7,7 @@
     <h:head>
         <title>Miage - Page d'accueil</title>
     </h:head>
-    <h:body>
+    <h:body>        
         <ui:composition template="/WEB-INF/include/template.xhtml">
             
             <ui:define name="htmlHead">
@@ -19,14 +19,26 @@
                 <h:form>
                     <h:panelGroup layout="block" styleClass="container_central">
                     <ui:repeat value="#{listeCours.liste}" var="liste">
-                        <h:commandLink action="home?faces-redirect=true" styleClass="pgroup_img_home">
-                            <h:panelGroup layout="block" styleClass="img_home">
-                                <h:graphicImage value="/images/cours/#{liste.image}" height="200" width="200" styleClass="display_desc" />
-                                <h:panelGroup layout="block" styleClass="desc_img">#{listeCours.troncateDescription(liste.description)}</h:panelGroup>
-                            </h:panelGroup>
-                            <h:panelGroup layout="block" style="margin-top: 2%; width: 100%;">
+                        <h:commandLink action="#{descriptionCours.annuaireToDescription}" styleClass="pgroup_img_home">
+                            <f:param name="idCours" value="#{liste.idCours}" />
+                            
+                            <h:panelGroup layout="block" styleClass="img_titre_home">
                                 #{liste.nomCours}
                             </h:panelGroup>
+                            
+                            <h:panelGroup layout="block">
+                                <h:graphicImage value="/images/cours/#{liste.image}"  styleClass="img_home"/>
+                                <h:panelGroup layout="block" styleClass="desc_img">
+                                    #{listeCours.troncateDescription(liste.description)}
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" styleClass="prix_img">
+                                    <i class="fa fa-money fa-lg" />  #{listeCours.sigleEuro(liste.prix)}
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" styleClass="plus_infos">
+                                    Plus d'infos
+                                </h:panelGroup>
+                            </h:panelGroup>
+                            
                         </h:commandLink>
                     </ui:repeat>
                     </h:panelGroup>
