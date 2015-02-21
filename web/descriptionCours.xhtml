@@ -51,7 +51,9 @@
                     
                     <h:form>
                     <h:panelGroup layout="block" styleClass="pgroup_btn_ajout_panier">
-                        <h:commandButton value="#{messages.ajoutPanier}" action="#{descriptionCours.addToPanier}" styleClass="btn_ajout_panier" />
+                        <h:commandButton value="#{messages.ajoutPanier}" action="#{panier.addToPanier}" styleClass="btn_ajout_panier" >
+                            <f:param name="idCours" value="#{descriptionCours.cours.idCours}" />
+                        </h:commandButton>
                     </h:panelGroup>
                     </h:form>
                 </h:panelGroup>

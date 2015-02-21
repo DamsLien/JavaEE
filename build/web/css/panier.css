@@ -1,0 +1,152 @@
+/* 
+    Created on : 20 févr. 2015, 10:54:54
+    Author     : Damien
+*/
+.dt_panier{
+    background-color: lightgreen;
+    border: 1px solid lightgray;
+    font-family: arial,helvetica,"DejaVu Sans","Arial Unicode MS","Lucida Sans Unicode",sans-serif;
+    margin-top: 2%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 2%;
+    width: 90%;
+}
+
+.dt_panier_header{
+    color: #404040;
+    font-family: arial,helvetica,"DejaVu Sans","Arial Unicode MS","Lucida Sans Unicode",sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: bold;
+    height: 35px;
+}
+
+.dt_panier_footer{
+    border-top: 1px solid lightgrey;
+    color: red;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    padding-right: 15px;
+    text-align: right;
+}
+
+.dt_panier_row{
+    border: 1px solid lightgrey;
+    background-color: white;
+}
+
+.dt_panier_img, .dt_panier_desc, .dt_panier_nb, .dt_panier_prix{ border-top: 1px solid lightgray; }
+
+.dt_panier_img{ width: 20%; }
+.dt_panier_desc{
+    padding: 5px 0;
+    text-align: justify;
+    width: 58%;
+}
+.panier_titre_cours{
+    float: left;
+    font-weight: bold;
+}
+p{
+    line-height: 18px;
+    width: 80%;
+}
+.remove_panier{
+    color: #404040;
+    float: right;
+    font-family: arial,helvetica,"DejaVu Sans","Arial Unicode MS","Lucida Sans Unicode",sans-serif;
+    font-style: normal;
+    margin-right: 15%;
+    text-decoration: none;
+}
+.remove_panier:hover{
+    color: red;
+    cursor: pointer;
+}
+
+.dt_panier_nb{
+    text-align: center;
+    width: 12%;
+}
+
+.dt_panier_prix{
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 12px;
+    text-align: right;
+}
+
+/***********/
+/* Boutons */
+/***********/
+.btn_panier{
+    margin: 0 auto;
+    width: 90%;
+}
+
+.btn_retour_catalogue{
+    background-image: -webkit-linear-gradient(top, #e7e7e7 0, #ddd 100%);
+    border: 0;
+    color: #404040;
+    float: left;
+    font-weight: bold;
+    margin-left: 20px;
+    padding: 10px;
+}
+.btn_retour_catalogue:hover{
+    background-color: lightgrey;
+    background-image: none;
+    cursor: pointer;
+}
+
+.btn_command{
+    background-color: #fb9521;
+    background-image: -webkit-linear-gradient(top,#fe9a20 0,#ee8024 100%);
+    border: 0;
+    color: white;
+    float: right;
+    font-family: arial,helvetica,"DejaVu Sans","Arial Unicode MS","Lucida Sans Unicode",sans-serif;
+    font-weight: bold;
+    margin-right: 20px;
+    padding: 10px;
+}
+.btn_command:hover{
+    background-color: #ee8024;
+    background-image: none;
+    cursor: pointer;
+}
+
+/* Paiement */
+.paiement{
+    background-color: white;
+    border: 1px solid lightgray;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 90%;
+}
+.paiement2{
+    background-color: #F0F0F0;
+    margin: 0 auto;
+}
+
+.grid_paiement{
+    font-family: arial,helvetica,"DejaVu Sans","Arial Unicode MS","Lucida Sans Unicode",sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    margin: 0 auto;
+    min-width: 50%;
+}
+
+.img_cb{
+    color: green;
+    font-family: arial,helvetica,"DejaVu Sans","Arial Unicode MS","Lucida Sans Unicode",sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 auto;
+    padding-bottom: 10px ;
+    text-align: center;
+    width: 100%;
+}

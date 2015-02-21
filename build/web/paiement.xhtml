@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Miage - Page d'accueil</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/WEB-INF/include/template.xhtml">
+            
+            <ui:define name="htmlHead">
+                <title>Paiement sécurisé</title>
+                <link rel="stylesheet" type="text/css" href="#{cheminAbsolu.cheminAbsolu}/css/panier.css" />
+            </ui:define>
+            
+            <ui:define name="central" >
+                <h1>Paiement par carte bancaire</h1>
+                
+                <h:messages globalOnly="true" />
+                
+                <h:form>
+                    <h:panelGroup layout="block" styleClass="paiement" >
+                    <h:panelGroup layout="block" styleClass="paiement2" >
+                        <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="grid_paiement">
+                            <h:selectBooleanCheckbox id="newCB" value="#{paiement.createCB}" style="float: right"/>
+                            <h:outputLabel value="#{messages.ajoutCB}" for="newCB"/>
+                            <h:message id="msgCBExiste" for="newCB" errorClass="erreur"/>
+                            
+                            <h:outputLabel value="#{messages.numCarte}" />
+                            <h:inputText id="numCarte" value="#{paiement.cb.code}" requiredMessage="#{messages.numCarteOublie}" required="true" maxlength="16">
+                                <f:ajax event="blur" render="msgNumCarte" />
+                            </h:inputText>
+                            <h:message id="msgNumCarte" for="numCarte" errorClass="erreur"/>
+
+                            <h:outputLabel value="#{messages.cryptogramme}" />
+                            <h:inputText id="cryptogramme" value="#{paiement.cb.cryptogramme}" size="3" maxlength="3" requiredMessage="#{messages.cryptoOublie}" required="true" >
+                                <f:ajax event="blur" render="msgCrypto" />
+                            </h:inputText>
+                            <h:message id="msgCrypto" for="cryptogramme" errorClass="erreur"/>                     
+                        </h:panelGrid>
+                        
+                        <h:panelGroup layout="block" styleClass="img_cb">
+                            <h:graphicImage value="/images/mastercard.png" style="padding-right: 20px"/>
+                            <h:graphicImage value="/images/visa.png" />
+                            <br /><br />
+                            Total (TTC) : #{listeCours.sigleEuro(panier.prixTotal)}
+                        </h:panelGroup>
+                        
+                    </h:panelGroup>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup layout="block" styleClass="btn_panier">
+                        <h:commandButton value="#{messages.retourPanier}" action="panier?faces-redirect=true" immediate="true" styleClass="btn_retour_catalogue"/>
+                        <h:commandButton value="#{messages.continuer}" action="#{paiement.validerCB}" styleClass="btn_command"/>
+                    </h:panelGroup>
+                </h:form>
+                
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

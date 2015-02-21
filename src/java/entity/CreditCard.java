@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +17,8 @@ public class CreditCard implements Serializable{
     @Id
     @GeneratedValue
     private long idCarte; 
-    private int code; // Code de la carte
-    private int cryptogramme; // Cryptogramme
+    private String code; // Code de la carte
+    private String cryptogramme; // Cryptogramme
     // Plusieurs cartes de crédits peuvent être affecté à un utilisateur
     @ManyToOne
     private Utilisateur utilisateur;
@@ -28,7 +29,7 @@ public class CreditCard implements Serializable{
     public CreditCard() {
     }
 
-    public CreditCard(int code, int cryptogramme) {
+    public CreditCard(String code, String cryptogramme) {
         this.code = code;
         this.cryptogramme = cryptogramme;
     }
@@ -44,19 +45,19 @@ public class CreditCard implements Serializable{
         this.idCarte = idCarte;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public int getCryptogramme() {
+    public String getCryptogramme() {
         return cryptogramme;
     }
 
-    public void setCryptogramme(int cryptogramme) {
+    public void setCryptogramme(String cryptogramme) {
         this.cryptogramme = cryptogramme;
     }
 
