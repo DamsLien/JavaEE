@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 
 /**
@@ -65,9 +67,22 @@ public class Valider {
         Utilisateur utilisateur = connexion.getUtilisateur();
         
         utilisateur.setListeCours(listeCours);
-        // panierDAO.addAllPanier(utilisateur);
+        panierDAO.addAllPanier(utilisateur);
+        panier.getListeCours().removeAll(panier.getListeCours());
         
-        return "panier?faces-redirect=true";
+        return "mesCours?faces-redirect=true";
     }
     
+    public void getFromFlash(ComponentSystemEvent e) {
+        Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+        String code = (String) flash.get("code");
+        String cryptogramme = (String) flash.get("crypto");
+        
+        if(code.equals("") || cryptogramme.equals("")){
+            try{ 
+                String ctx = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+                FacesContext.getCurrentInstance().getExternalContext().redirect(ctx + "/home.xhtml"); }
+            catch(Exception exc){ exc.printStackTrace(); }
+        }
+    }
 }

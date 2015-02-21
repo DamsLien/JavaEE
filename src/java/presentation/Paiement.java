@@ -2,6 +2,7 @@ package presentation;
 
 import boundary.PanierDAO;
 import entity.CreditCard;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class Paiement implements Serializable{
     private CreditCard cb;
     @ManagedProperty("#{connexion}")
     private Connexion connexion;
+    @ManagedProperty("#{panier}")
+    private Panier panier;
 
     /*********************/
     /* Getters & Setters */
@@ -65,6 +68,14 @@ public class Paiement implements Serializable{
         this.connexion = connexion;
     }
 
+    public Panier getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Panier panier) {
+        this.panier = panier;
+    }
+
     
     /*************/
     /* Fonctions */
@@ -73,6 +84,15 @@ public class Paiement implements Serializable{
     public void onInit(){
         this.listeCB = new ArrayList<>();
         this.cb = new CreditCard();
+    }
+    
+    public void existencePanier(){
+        if(panier.getListeCours().isEmpty()){
+            try{
+                String ctx = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+                FacesContext.getCurrentInstance().getExternalContext().redirect(ctx + "/home.xhtml"); }
+            catch(IOException ioe){ ioe.printStackTrace(); }
+        }
     }
     
     /**
@@ -104,6 +124,9 @@ public class Paiement implements Serializable{
             return "";
         }
         
+        
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("code", this.cb.getCode());
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("crypto", this.cb.getCryptogramme());
         // Carte connu et bon utilisateur
         return "valider?faces-redirect=true";
     }

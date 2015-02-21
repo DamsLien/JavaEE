@@ -166,12 +166,14 @@ public class Utilisateur implements Serializable{
         this.isAdmin = isAdmin;
     }
 
+    @Override
+    public String toString() {
+        return "Utilisateur{" + "idUser=" + idUser + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login + ", mail=" + mail + ", mdp=" + mdp + ", cb=" + cb + ", listeCours=" + listeCours + ", listeEpisodes=" + listeEpisodes + ", isAdmin=" + isAdmin + '}';
+    }
+
     /*************/
     /* Functions */
     /*************/
-    @Override
-    public String toString() {
-        return "Utilisateur{" + "idUser=" + idUser + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login + ", mail=" + mail + ", mdp=" + mdp + ", cb=" + cb + ", listeCours=" + listeCours + ", isAdmin=" + isAdmin + '}';
-    }    
+   
     
 }

@@ -41,9 +41,9 @@
                    
                     <h:panelGroup layout="block" styleClass="conteneur_episodes">
                         <ui:repeat value="#{listeEpisodes.episodes}" var="episodes">
-                            <h:panelGroup styleClass="conteneur_video">
-                                <iframe src="#{episodes.fichierVideo}?showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3" height="300" width="400" frameborder="0" allowfullscreen="true" /><br/>
-                                    #{episodes.nomEpisode}
+                            <h:panelGroup styleClass="conteneur_video" >
+                                <iframe src="#{episodes.fichierVideo}?fs=1&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3" height="300" width="400" frameborder="0" allowfullscreen="true" />
+                                <br/>#{episodes.nomEpisode}
                             </h:panelGroup>
                         </ui:repeat>
                     </h:panelGroup>

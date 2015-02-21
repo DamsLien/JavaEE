@@ -2,6 +2,8 @@ package presentation;
 
 import boundary.MesCoursDAO;
 import entity.Cours;
+import entity.Episode;
+import entity.Utilisateur;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +91,18 @@ public class MesCours implements Serializable{
      */
     public void loadCours(){
         this.cours = mesCoursDao.find(this.cours.getIdCours());
+    }
+    
+    /**
+     * Indique dans la base si l'épisode a été visionné
+     * @param episode 
+     */
+    public void episodeVu(Episode episode){
+        Utilisateur utilisateur = connexion.getUtilisateur();
+        List<Utilisateur> listU = new ArrayList<>();
+        listU.add(utilisateur);
+        episode.setListeUtilisateurs(listU);
+        System.out.println("------------ " + episode);
     }
     
 }

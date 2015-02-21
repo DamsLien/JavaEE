@@ -88,11 +88,21 @@ public class Episode implements Serializable{
         this.dateEpisode = dateEpisode;
     }
 
+    public List<Utilisateur> getListeUtilisateurs() {
+        return listeUtilisateurs;
+    }
+
+    public void setListeUtilisateurs(List<Utilisateur> listeUtilisateurs) {
+        this.listeUtilisateurs = listeUtilisateurs;
+    }
+
+    @Override
+    public String toString() {
+        return "Episode{" + "idEpisode=" + idEpisode + ", nomEpisode=" + nomEpisode + ", fichierVideo=" + fichierVideo + ", dateEpisode=" + dateEpisode + ", cours=" + cours + ", listeUtilisateurs=" + listeUtilisateurs + '}';
+    }
+
     /*************/
     /* Functions */
     /*************/
-    @Override
-    public String toString() {
-        return "Episode{" + "idEpisode=" + idEpisode + ", nomEpisode=" + nomEpisode + ", fichierVideo=" + fichierVideo + ", cours=" + cours + '}';
-    }
+    
 }
