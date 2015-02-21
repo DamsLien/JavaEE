@@ -73,5 +73,4 @@ public class PanierDAO {
         this.em.merge(u);
         this.em.flush();
     }
-    
 }

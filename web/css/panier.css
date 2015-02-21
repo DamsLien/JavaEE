@@ -90,10 +90,13 @@ p{
     background-image: -webkit-linear-gradient(top, #e7e7e7 0, #ddd 100%);
     border: 0;
     color: #404040;
+    font-family: arial,helvetica,"DejaVu Sans","Arial Unicode MS","Lucida Sans Unicode",sans-serif;
+    font-weight: bold;
     float: left;
     font-weight: bold;
     margin-left: 20px;
     padding: 10px;
+    text-decoration: none;
 }
 .btn_retour_catalogue:hover{
     background-color: lightgrey;

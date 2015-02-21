@@ -50,8 +50,9 @@
                 
                 <h:form>
                     <h:panelGroup layout="block" styleClass="btn_panier">
-                        <h:commandButton value="#{messages.retourShopping}" action="home?faces-redirect=true" styleClass="btn_retour_catalogue"/>
-                        <h:commandButton value="#{messages.confirmer}" action="paiement?faces-redirect=true" styleClass="btn_command"/>
+                        <h:commandLink value="#{messages.retourShopping}" action="home?faces-redirect=true" styleClass="btn_retour_catalogue"/>
+                        <h:commandButton value="#{messages.confirmer}" action="paiement?faces-redirect=true" rendered="#{panier.prixTotal > 0}" styleClass="btn_command"/>
+                        <h:commandButton value="#{messages.confirmer}" action="#{valider.doAddPanier()}" rendered="#{panier.prixTotal == 0}" styleClass="btn_command"/>
                     </h:panelGroup>
                 </h:form>
                 

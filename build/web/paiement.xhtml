@@ -29,6 +29,10 @@
                     <h:panelGroup layout="block" styleClass="paiement2" >
                         <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="grid_paiement">
                             
+                            <h:selectBooleanCheckbox value="#{paiement.newCB}" />
+                            <h:outputLabel value="#{messages.ajoutCB}"/>
+                            <h:outputLabel value="" />
+                            
                             <h:outputLabel value="#{messages.numCarte}" />
                             <h:inputText id="numCarte" value="#{paiement.cb.code}" requiredMessage="#{messages.numCarteOublie}" required="true" maxlength="16">
                                 <f:ajax event="blur" render="msgNumCarte" />
@@ -53,8 +57,8 @@
                     </h:panelGroup>
                     
                     <h:panelGroup layout="block" styleClass="btn_panier">
-                        <h:commandButton value="#{messages.retourPanier}" action="panier?faces-redirect=true" immediate="true" styleClass="btn_retour_catalogue"/>
-                        <h:commandButton value="#{messages.continuer}" action="#{paiement.validerCB()}" immediate="true" styleClass="btn_command"/>
+                        <h:commandLink value="#{messages.retourPanier}" action="panier?faces-redirect=true" immediate="true" styleClass="btn_retour_catalogue"/>
+                        <h:commandButton value="#{messages.continuer}" action="#{paiement.validerCB()}" styleClass="btn_command"/>
                     </h:panelGroup>
                 </h:form>
                 

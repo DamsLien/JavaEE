@@ -9,7 +9,7 @@
     </h:head>
     <h:body>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{valider.getFromFlash}" />
+            <f:event type="preRenderView" listener="#{valider.getFromFlash(e)}" />
         </f:metadata>
         
         <ui:composition template="/WEB-INF/include/template.xhtml">

@@ -32,7 +32,8 @@ public class Paiement implements Serializable{
     private Connexion connexion;
     @ManagedProperty("#{panier}")
     private Panier panier;
-
+    private boolean newCB;
+    
     /*********************/
     /* Getters & Setters */
     /*********************/
@@ -76,6 +77,14 @@ public class Paiement implements Serializable{
         this.panier = panier;
     }
 
+    public boolean isNewCB() {
+        return newCB;
+    }
+
+    public void setNewCB(boolean newCB) {
+        this.newCB = newCB;
+    }
+
     
     /*************/
     /* Fonctions */
@@ -84,6 +93,7 @@ public class Paiement implements Serializable{
     public void onInit(){
         this.listeCB = new ArrayList<>();
         this.cb = new CreditCard();
+        this.newCB = false;
     }
     
     public void existencePanier(){
@@ -111,10 +121,17 @@ public class Paiement implements Serializable{
         CreditCard temp = panierDAO.findCBByInfos(this.cb);
         
         // Carte inconnue
-        if(temp == null){
+        if(temp == null && !this.newCB){
+            this.cb.setCode("");
             FacesMessage msgError = new FacesMessage("Cette carte bancaire n'existe pas !");
             FacesContext.getCurrentInstance().addMessage(null, msgError);
             return "";
+        }
+        
+        // Carte inconnue mais demande de création
+        if(temp == null && this.newCB){
+            this.cb.setUtilisateur(connexion.getUtilisateur());
+            panierDAO.addCB(this.cb);
         }
         
         // Carte connue mais pas la bonne personne
@@ -124,6 +141,7 @@ public class Paiement implements Serializable{
             return "";
         }
         
+        System.out.println("---- " + this.cb);
         
         FacesContext.getCurrentInstance().getExternalContext().getFlash().put("code", this.cb.getCode());
         FacesContext.getCurrentInstance().getExternalContext().getFlash().put("crypto", this.cb.getCryptogramme());

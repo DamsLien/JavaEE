@@ -11,6 +11,7 @@
         <f:metadata>
             <f:viewParam name="idCours" value="#{mesCours.cours.idCours}" />
             <f:viewParam name="idCours" value="#{listeEpisodes.cours.idCours}" />
+            <f:event type="preRenderView" listener="#{mesCours.coursAchete}" />
             <f:event type="preRenderView" listener="#{mesCours.loadCours}" />
         </f:metadata>
         

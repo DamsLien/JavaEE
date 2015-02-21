@@ -7,6 +7,7 @@ import entity.Utilisateur;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -63,12 +64,19 @@ public class MesCours implements Serializable{
     public void setConnexion(Connexion connexion) {
         this.connexion = connexion;
     }
+
     
+    @Override
+    public int hashCode(){
+        int hash = 7;
+        return hash;
+    }
+
     /*************/
     /* Fonctions */
     /*************/
     @PostConstruct
-    public void onInit(){
+    public void onInit() {
         this.listeCours = new ArrayList<>();
         this.cours = new Cours();
     }
@@ -84,6 +92,25 @@ public class MesCours implements Serializable{
     public String listeToCours(){
         this.cours.setIdCours(Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idCours")));
         return "regarderCours?faces-redirect=true&amp;includeViewParams=true";
+    }
+    
+    public void coursAchete(){
+        boolean existe = false;
+        listMyCourses();
+        
+        for(Cours c : this.listeCours){
+            if(c.getIdCours() == this.cours.getIdCours()){
+                existe = true;
+                break;
+            }
+        }
+        
+        if(!existe){
+            try{ 
+                String ctx = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
+                FacesContext.getCurrentInstance().getExternalContext().redirect(ctx + "/home.xhtml"); }
+            catch(Exception exc){ exc.printStackTrace(); }
+        }
     }
     
     /**

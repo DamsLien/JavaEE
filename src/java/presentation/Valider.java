@@ -73,15 +73,19 @@ public class Valider {
         return "mesCours?faces-redirect=true";
     }
     
+    /**
+     * Accès à la validation d'achat uniquement si le mode de paiement a été passé
+     * @param e 
+     */
     public void getFromFlash(ComponentSystemEvent e) {
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
         String code = (String) flash.get("code");
         String cryptogramme = (String) flash.get("crypto");
         
-        if(code.equals("") || cryptogramme.equals("")){
+        if(code == null || cryptogramme == null){
             try{ 
                 String ctx = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
-                FacesContext.getCurrentInstance().getExternalContext().redirect(ctx + "/home.xhtml"); }
+                FacesContext.getCurrentInstance().getExternalContext().redirect(ctx + "/panier.xhtml"); }
             catch(Exception exc){ exc.printStackTrace(); }
         }
     }

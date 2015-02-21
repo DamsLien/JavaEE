@@ -2,18 +2,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{mesCours.listMyCourses()}" />
-        </f:metadata>
+        <ui:composition template="/WEB-INF/include/template.xhtml">
+
+            <ui:define name="htmlHead">
+                <title>Page de test n°1</title>
+                <link rel="stylesheet" type="text/css" href="#{cheminAbsolu.cheminAbsolu}/css/episode.css" />
+            </ui:define>
+
+            <ui:define name="central" >    
+                <h:form>
+                    <h:selectBooleanCheckbox value="#{test.newCB}" />
+                    
+                    <h:commandButton value="Submit" action="#{test.tryCheckBox}"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
         
-        <h:form>
-            <h:commandButton value="Test" action="#{mesCours.listMyCourses()}" />
-        </h:form>
+        
     </h:body>
 </html>
 
