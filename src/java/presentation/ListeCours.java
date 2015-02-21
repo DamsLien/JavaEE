@@ -6,16 +6,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
  * @author Damien
  */
-@Named
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class ListeCours implements Serializable{
     @Inject
     CoursDAO coursDAO;
@@ -34,7 +34,7 @@ public class ListeCours implements Serializable{
 
     // On récupère la liste des cours présents dans la BdD
     public List<Cours> getListe() {
-        this.liste = coursDAO.findAll();
+        // this.liste = coursDAO.findAll();
         return liste;
     }
 

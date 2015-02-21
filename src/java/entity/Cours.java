@@ -132,14 +132,16 @@ public class Cours implements Serializable{
     public void setPart(Part part) {
         this.part = part;
     }
+
+    @Override
+    public String toString() {
+        return "Cours{" + "idCours=" + idCours + ", nomCours=" + nomCours + ", description=" + description + ", image=" + image + ", dateAjout=" + dateAjout + ", episodes=" + episodes + ", utilisateurs=" + utilisateurs + ", prix=" + prix + '}';
+    }
     
     /*************/
     /* Functions */
     /*************/
-    @Override
-    public String toString() {
-        return "Cours{" + "idCours=" + idCours + ", description=" + description + ", image=" + image + ", episodes=" + episodes + ", prix=" + prix + '}';
-    }
+    
     
     
     

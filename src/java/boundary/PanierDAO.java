@@ -1,5 +1,6 @@
 package boundary;
 
+import entity.Cours;
 import entity.CreditCard;
 import entity.CreditCard_;
 import entity.Utilisateur;
@@ -56,7 +57,21 @@ public class PanierDAO {
         }
     }
     
+    /**
+     * Ajouter une carte bancaire à la base de données
+     * @param cb Carte Bancaire à ajouter
+     */
     public void addCB(CreditCard cb){
         this.em.persist(cb);
     }
+    
+    /**
+     * Ajout des cours achetés par l'utilisateur
+     * @param u utilisateur ayant acheté des cours
+     */
+    public void addAllPanier(Utilisateur u){
+        this.em.merge(u);
+        this.em.flush();
+    }
+    
 }

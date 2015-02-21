@@ -103,14 +103,4 @@ public class DescriptionCours {
         return valeur;
     }
     
-    /**
-     * Redirection vers la page "Panier"
-     * On met dans le flash l'ID du cours pour pouvoir le récupérer
-     * @return le chemin de redirection
-     */
-    public String addToPanier(){
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("idCours", this.cours.getIdCours());
-        
-        return "panier?faces-redirect=true";
-    }
 }

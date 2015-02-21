@@ -7,21 +7,12 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{mesCours.listMyCourses()}" />
+        </f:metadata>
         
         <h:form>
-            <h:messages globalOnly="true" />
-            Nom :   
-            <h:inputText value="#{test.u.nom}" id="nom" required="true" requiredMessage="#{test.u.nom}">
-                    <f:ajax event="blur" render="msgNom" />
-                </h:inputText>
-                <h:message for="msgNom" id="msgNom" />
-                <br />
-                    
-            Prénom : <h:inputText value="#{test.u.prenom}" id="prenom" >
-                        <f:ajax event="blur" render="msgPrenom" />
-                    </h:inputText>
-                    <h:message for="msgPrenom" id="msgPrenom" /><br />
-            <h:commandButton value="modifier" action="test2?faces-redirect=true" />
+            <h:commandButton value="Test" action="#{mesCours.listMyCourses()}" />
         </h:form>
     </h:body>
 </html>

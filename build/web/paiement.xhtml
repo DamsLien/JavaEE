@@ -20,13 +20,10 @@
                 
                 <h:messages globalOnly="true" />
                 
-                <h:form>
+                <h:form id="formPaie">
                     <h:panelGroup layout="block" styleClass="paiement" >
                     <h:panelGroup layout="block" styleClass="paiement2" >
                         <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="grid_paiement">
-                            <h:selectBooleanCheckbox id="newCB" value="#{paiement.createCB}" style="float: right"/>
-                            <h:outputLabel value="#{messages.ajoutCB}" for="newCB"/>
-                            <h:message id="msgCBExiste" for="newCB" errorClass="erreur"/>
                             
                             <h:outputLabel value="#{messages.numCarte}" />
                             <h:inputText id="numCarte" value="#{paiement.cb.code}" requiredMessage="#{messages.numCarteOublie}" required="true" maxlength="16">
@@ -35,9 +32,9 @@
                             <h:message id="msgNumCarte" for="numCarte" errorClass="erreur"/>
 
                             <h:outputLabel value="#{messages.cryptogramme}" />
-                            <h:inputText id="cryptogramme" value="#{paiement.cb.cryptogramme}" size="3" maxlength="3" requiredMessage="#{messages.cryptoOublie}" required="true" >
+                            <h:inputSecret id="cryptogramme" value="#{paiement.cb.cryptogramme}" size="3" maxlength="3" requiredMessage="#{messages.cryptoOublie}" required="true" >
                                 <f:ajax event="blur" render="msgCrypto" />
-                            </h:inputText>
+                            </h:inputSecret>
                             <h:message id="msgCrypto" for="cryptogramme" errorClass="erreur"/>                     
                         </h:panelGrid>
                         
@@ -53,7 +50,7 @@
                     
                     <h:panelGroup layout="block" styleClass="btn_panier">
                         <h:commandButton value="#{messages.retourPanier}" action="panier?faces-redirect=true" immediate="true" styleClass="btn_retour_catalogue"/>
-                        <h:commandButton value="#{messages.continuer}" action="#{paiement.validerCB}" styleClass="btn_command"/>
+                        <h:commandButton value="#{messages.continuer}" action="#{paiement.validerCB()}" immediate="true" styleClass="btn_command"/>
                     </h:panelGroup>
                 </h:form>
                 

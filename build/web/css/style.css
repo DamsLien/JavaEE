@@ -299,11 +299,11 @@ h2, .aucun{
     font-family: Verdana;
     font-size: 12px;
     line-height: 20px;
-    height: 120px;
+    height: 110px;
     visibility: hidden; 
 }
 .pgroup_img_home:hover .desc_img{
-    margin-top: -155px;
+    margin-top: -145px;
     visibility: visible;
     z-index: 2;
 }

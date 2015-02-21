@@ -2,28 +2,33 @@ package presentation;
 
 import boundary.PanierDAO;
 import entity.CreditCard;
+import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
+import security.Cryptage;
 
 /**
  *
  * @author Damien
  */
-@Named
-@RequestScoped
-public class Paiement{
+@ManagedBean
+@ViewScoped
+public class Paiement implements Serializable{
     @Inject
     PanierDAO panierDAO;
     
     private List<CreditCard> listeCB;
     private CreditCard cb;
-    private boolean createCB;
+    @ManagedProperty("#{connexion}")
+    private Connexion connexion;
 
     /*********************/
     /* Getters & Setters */
@@ -52,13 +57,14 @@ public class Paiement{
         this.cb = cb;
     }
 
-    public boolean isCreateCB() {
-        return createCB;
+    public Connexion getConnexion() {
+        return connexion;
     }
 
-    public void setCreateCB(boolean createCB) {
-        this.createCB = createCB;
+    public void setConnexion(Connexion connexion) {
+        this.connexion = connexion;
     }
+
     
     /*************/
     /* Fonctions */
@@ -67,26 +73,39 @@ public class Paiement{
     public void onInit(){
         this.listeCB = new ArrayList<>();
         this.cb = new CreditCard();
-        this.createCB = true;
     }
     
-    public void validerCB(){
+    /**
+     * 1 - Création de la CB si elle n'existe pas encore
+     * 2 - Message d'erreur si la CB n'existe pas et qu'on ne veut pas la créer
+     * 3 - Message d'erreur si la CB ne correspond pas à l'utilisateur
+     * 4 - CB connu et liée à l'utilisateur, on valide
+     * @return chemin de redirection selon l'un des cas ci-dessus
+     */
+    public String validerCB(){
+        // Cryptage des données
+        Cryptage cryptage = new Cryptage();
+        try{ this.cb = cryptage.cryptage(this.cb); }
+        catch(NoSuchAlgorithmException e){ e.printStackTrace(); }
+        
         CreditCard temp = panierDAO.findCBByInfos(this.cb);
         
-        
-        
-        // Carte inconnue & pas de demande de création
-        if(temp == null && !this.createCB){
+        // Carte inconnue
+        if(temp == null){
             FacesMessage msgError = new FacesMessage("Cette carte bancaire n'existe pas !");
-            FacesContext.getCurrentInstance().addMessage("form:msgCBExiste", msgError);
+            FacesContext.getCurrentInstance().addMessage(null, msgError);
+            return "";
         }
         
-        if(temp == null && this.createCB){
-            
+        // Carte connue mais pas la bonne personne
+        if(temp.getUtilisateur().getIdUser() != connexion.getUtilisateur().getIdUser()){
+            FacesMessage msgError = new FacesMessage("Cette carte bancaire ne vous appartient pas !");
+            FacesContext.getCurrentInstance().addMessage(null, msgError);
+            return "";
         }
         
-        // Carte connue mais pas bon utilisateur
-        
-        // Carte connu rien à faire
+        // Carte connu et bon utilisateur
+        return "valider?faces-redirect=true";
     }
+    
 }
