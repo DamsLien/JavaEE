@@ -50,10 +50,13 @@
                     </h:panelGroup>
                     
                     <h:form>
-                    <h:panelGroup layout="block" styleClass="pgroup_btn_ajout_panier">
+                    <h:panelGroup layout="block" styleClass="pgroup_btn_ajout_panier" rendered="#{!panier.dejaDansPanier(descriptionCours.cours.idCours)}">
                         <h:commandButton value="#{messages.ajoutPanier}" action="#{panier.addToPanier}" styleClass="btn_ajout_panier" >
                             <f:param name="idCours" value="#{descriptionCours.cours.idCours}" />
                         </h:commandButton>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="pgroup_btn_ajout_panier" rendered="#{panier.dejaDansPanier(descriptionCours.cours.idCours)}">
+                        <h:commandButton value="Cours déjà dans le panier" action="#{panier.addToPanier}" styleClass="btn_ajout_panier" disabled="true"/>
                     </h:panelGroup>
                     </h:form>
                 </h:panelGroup>

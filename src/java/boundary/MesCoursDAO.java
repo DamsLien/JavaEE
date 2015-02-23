@@ -1,6 +1,7 @@
 package boundary;
 
 import entity.Cours;
+import entity.Cours_;
 import entity.Episode;
 import entity.Episode_;
 import entity.Utilisateur;
@@ -33,9 +34,21 @@ public class MesCoursDAO {
      * @return list de cours
      */
     public List<Cours> findAll(Utilisateur u){
-        Query query = this.em.createQuery("SELECT c FROM Cours c JOIN c.utilisateurs us WHERE us.idUser = :id");
-        query.setParameter("id", u.getIdUser());
-        return query.getResultList();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery(Cours.class);
+        Root<Cours> root = cq.from(Cours.class);
+        Join<Cours, Utilisateur> join = root.join(Cours_.utilisateurs);
+        Predicate condition = cb.equal(join.get(Utilisateur_.idUser), u.getIdUser());
+        cq.where(condition);
+        cq.select(root);
+        TypedQuery<Cours> tq = this.em.createQuery(cq);
+        
+        try{ 
+            return tq.getResultList();
+        }
+        catch(NoResultException e){
+            return null;
+        }
     }
     
     /**

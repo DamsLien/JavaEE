@@ -1,12 +1,15 @@
 package presentation;
 
 import boundary.CoursDAO;
+import boundary.MesCoursDAO;
 import entity.Cours;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
@@ -19,7 +22,12 @@ import javax.inject.Inject;
 public class ListeCours implements Serializable{
     @Inject
     CoursDAO coursDAO;
+    @Inject
+    MesCoursDAO mesCoursDAO;
+    
     private List<Cours> liste;
+    @ManagedProperty("#{connexion}")
+    private Connexion connexion;
 
     /*********************/
     /* Getters & Setters */
@@ -32,6 +40,14 @@ public class ListeCours implements Serializable{
         this.coursDAO = coursDAO;
     }
 
+    public MesCoursDAO getMesCoursDAO() {
+        return mesCoursDAO;
+    }
+
+    public void setMesCoursDAO(MesCoursDAO mesCoursDAO) {
+        this.mesCoursDAO = mesCoursDAO;
+    }
+
     // On récupère la liste des cours présents dans la BdD
     public List<Cours> getListe() {
         // this.liste = coursDAO.findAll();
@@ -40,6 +56,14 @@ public class ListeCours implements Serializable{
 
     public void setListe(List<Cours> liste) {
         this.liste = liste;
+    }
+
+    public Connexion getConnexion() {
+        return connexion;
+    }
+
+    public void setConnexion(Connexion connexion) {
+        this.connexion = connexion;
     }
     
     /*************/
@@ -100,12 +124,15 @@ public class ListeCours implements Serializable{
      * Listing des cours ayant au moins un épisode
      * Permet de ne pas afficher les cours sans épisodes
      */
-    public void listWithEpisode(){
+    public void listInCatalogue(){
         List<Cours> alc = coursDAO.findAll();
+        List<Cours> alc2 = mesCoursDAO.findAll(connexion.getUtilisateur());
         
         for(Cours c : alc){
-            if(coursDAO.nbEpisode(c.getIdCours()) > 0){
-                this.liste.add(c);
+            for(Cours c2 : alc2){
+                if(coursDAO.nbEpisode(c.getIdCours()) > 0 && c.getIdCours() != c2.getIdCours()){
+                    this.liste.add(c);
+                }
             }
         }
     }

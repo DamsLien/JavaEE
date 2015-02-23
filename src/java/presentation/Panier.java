@@ -130,4 +130,18 @@ public class Panier implements Serializable{
         return coursDAO.nbEpisode(idCours);
     }
     
+    /**
+     * Vérification de la présence ou non d'un article dans le panier, afin de ne pas le sélectionner à nouveau 
+     * et d'acheter plusieurs fois le même 
+     * @param idCours 
+     * @return true si le cours est déjà dans le panier, false sinon
+     */
+    public boolean dejaDansPanier(long idCours){
+        for(Cours c : this.listeCours){
+            if(c.getIdCours() == idCours){
+                return true;
+            }
+        }
+        return false;
+    }
 }
