@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Miage - Page d'accueil</title>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="idCours" value="#{mesCours.cours.idCours}" />
+            <f:viewParam name="idEpisode" value="#{lireEpisode.episode.idEpisode}" />
+            <f:event type="preRenderView" listener="#{mesCours.coursAchete}" />
+            <f:event type="preRenderView" listener="#{lireEpisode.loadEpisode}" />
+            <f:event type="preRenderView" listener="#{mesCours.loadCours}" />
+        </f:metadata>
+        
+        <ui:composition template="/WEB-INF/include/template.xhtml">
+            
+            <ui:define name="htmlHead">
+                <title>Cours : #{mesCours.cours.nomCours}</title>
+                <link rel="stylesheet" type="text/css" href="#{cheminAbsolu.cheminAbsolu}/css/description.css" />
+            </ui:define>
+            
+            <ui:define name="central" >
+                <h:panelGroup layout="block" styleClass="conteneur_central" >
+                    <h:panelGroup layout="block" styleClass="block_img">
+                        <h:graphicImage value="/images/cours/#{mesCours.cours.image}" styleClass="img_cours"/>
+                    </h:panelGroup>
+                    
+                    <hr class="hr_cours"/>
+                    
+                    <h:panelGroup layout="block" styleClass="titre_cours">
+                        ~ #{mesCours.cours.nomCours} ~<br />
+                    </h:panelGroup>
+                    <br />
+                    <h:panelGroup layout="block" styleClass="description_cours">
+                       #{mesCours.cours.description}
+                    </h:panelGroup>
+                    
+                    <hr class="hr_cours"/>                   
+                   
+                    <h:form>
+                    <h:panelGroup layout="block" styleClass="conteneur_episodes">
+                            <h:panelGroup styleClass="conteneur_video" >
+                                <iframe src="#{lireEpisode.episode.fichierVideo}?autoplay=0&amp;controls=1&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3" height="400" width="500" frameborder="0" allowfullscreen="false"/><br/>
+                                <br/>#{lireEpisode.episode.nomEpisode}
+                            </h:panelGroup>
+                    </h:panelGroup>
+                    </h:form>
+                    
+                    <h:form>
+                        <h:commandLink value="Retour" action="mesCours?faces-redirect=true" immediate="true" />
+                    </h:form>
+                </h:panelGroup>
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

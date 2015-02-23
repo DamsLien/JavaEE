@@ -59,5 +59,10 @@ public class ListeEpisodes implements Serializable{
         this.cours = new Cours();
         this.episodes = new ArrayList<>();
     }
+    
+    public String imageVideoYouTube(Episode episode){
+        int slash = episode.getFichierVideo().lastIndexOf("/")+1;
+        return episode.getFichierVideo().substring(slash);
+    }
 
 }

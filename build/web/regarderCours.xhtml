@@ -40,14 +40,28 @@
                     
                     <hr class="hr_cours"/>                   
                    
+                    <h:form>
                     <h:panelGroup layout="block" styleClass="conteneur_episodes">
                         <ui:repeat value="#{listeEpisodes.episodes}" var="episodes">
-                            <h:panelGroup styleClass="conteneur_video" >
-                                <iframe src="#{episodes.fichierVideo}?fs=1&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3" height="300" width="400" frameborder="0" allowfullscreen="true" />
-                                <br/>#{episodes.nomEpisode}
-                            </h:panelGroup>
+                            <h:commandLink action="#{lireEpisode.lireEpisode}">
+                                <f:param name="idCours" value="#{mesCours.cours.idCours}" />
+                                <f:param name="idEpisode" value="#{episodes.idEpisode}" />
+                                
+                                <h:panelGroup styleClass="conteneur_video" rendered="#{lireEpisode.episodeView(episodes.idEpisode)}" style="position: relative">
+                                    <h:graphicImage value="http://img.youtube.com/vi/#{listeEpisodes.imageVideoYouTube(episodes)}/0.jpg" height="250" width="350" >
+                                        <h:panelGroup styleClass="deja_visionner">Visionné</h:panelGroup>
+                                    </h:graphicImage>
+                                    <br/>#{episodes.nomEpisode}
+                                </h:panelGroup>
+                                
+                                <h:panelGroup styleClass="conteneur_video" rendered="#{!lireEpisode.episodeView(episodes.idEpisode)}">
+                                    <h:graphicImage value="http://img.youtube.com/vi/#{listeEpisodes.imageVideoYouTube(episodes)}/0.jpg" height="250" width="350"/>
+                                    <br/>#{episodes.nomEpisode}
+                                </h:panelGroup>
+                            </h:commandLink>
                         </ui:repeat>
                     </h:panelGroup>
+                    </h:form>
                     
                     <h:form>
                         <h:commandLink value="Retour" action="mesCours?faces-redirect=true" immediate="true" />

@@ -105,3 +105,12 @@
     background-color: #b9121b;
     border-color: #ca232c;
 }
+
+.deja_visionner{
+    background-color: #444444;
+    color: white;
+    padding: 5px 15px;
+    padding-left: 30px;
+    top: 17%;
+    position: absolute;
+}

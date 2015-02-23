@@ -2,7 +2,7 @@
     Created on : 20 févr. 2015, 10:54:54
     Author     : Damien
 */
-.dt_panier{
+.dt_panier, .dt_panier2{
     background-color: lightgreen;
     border: 1px solid lightgray;
     font-family: arial,helvetica,"DejaVu Sans","Arial Unicode MS","Lucida Sans Unicode",sans-serif;
@@ -11,6 +11,9 @@
     margin-left: auto;
     margin-bottom: 2%;
     width: 90%;
+}
+.dt_panier2{
+    background-color: lightcoral;
 }
 
 .dt_panier_header{

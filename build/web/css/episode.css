@@ -31,3 +31,14 @@
     padding: 0;
     width: 75%;
 }
+
+.recap_col1{ 
+    color: black;
+    font-weight: bold;
+    width: 35%; 
+}
+.recap_col2{ 
+    color: black;
+    text-align: justify;
+    width: 65%; 
+}

@@ -20,9 +20,9 @@
             </ui:define>
             
             <ui:define name="central" >
-                <h1>Confirmer vos achats</h1>
+                <h1><i class="fa fa-check fa-lg" style="padding-right: 3%"/> Confirmer vos achats</h1>
                 
-                <h:dataTable value="#{panier.listeCours}" var="liste" cellpadding="0" cellspacing="0" styleClass="dt_panier" headerClass="dt_panier_header" footerClass="dt_panier_footer" rowClasses="dt_panier_row" columnClasses="dt_panier_img, dt_panier_desc, dt_panier_nb, dt_panier_prix">
+                <h:dataTable value="#{panier.listeCours}" var="liste" cellpadding="0" cellspacing="0" styleClass="dt_panier2" headerClass="dt_panier_header" footerClass="dt_panier_footer" rowClasses="dt_panier_row" columnClasses="dt_panier_img, dt_panier_desc, dt_panier_nb, dt_panier_prix">
                     <h:column>
                         <f:facet name="header" >Cours</f:facet>
                         <h:graphicImage value="/images/cours/#{liste.image}" height="100" width="150" />

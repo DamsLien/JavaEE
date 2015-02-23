@@ -39,8 +39,10 @@
                             <h:message id="msgDescription" for="description" errorClass="erreur" />
                             
                             <h:outputLabel value="#{messages.price}" />
-                            <h:inputText id="prix" value="#{newCours.cours.prix}" requiredMessage="#{messages.prixOublie}" required="true" size="5" maxlength="6"/>
-                            <h:message id="msgPrix" for="prix_payant" errorClass="erreur" />
+                            <h:inputText id="prix" value="#{newCours.cours.prix}" requiredMessage="#{messages.prixOublie}" required="true" size="5" maxlength="6">
+                                <f:validateDoubleRange minimum="0.0" maximum="999.00" />
+                            </h:inputText>
+                            <h:message id="msgPrix" for="prix" errorClass="erreur" />
                             
                             <f:facet name="footer">
                                 <h:panelGroup layout="block" style="text-align: center">

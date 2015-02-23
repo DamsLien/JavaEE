@@ -10,11 +10,15 @@
     <h:body>
         <f:metadata>
             <f:viewParam name="idCours" value="#{newEpisode.cours.idCours}" />
+            <f:viewParam name="idCours" value="#{listeEpisodes.cours.idCours}" />   
+            <f:viewParam name="idCours" value="#{updateCours.cours.idCours}" />
+            <f:event type="preRenderView" listener="#{updateCours.loadCours}" />
         </f:metadata>
         
         <ui:composition template="/WEB-INF/include/template.xhtml">
             <ui:define name="htmlHead">
                 <title>Admin - Nouvel episode</title>
+                <link rel="stylesheet" type="text/css" href="#{cheminAbsolu.cheminAbsolu}/css/episode.css" />
             </ui:define>
             
             <ui:define name="central" >
@@ -25,6 +29,33 @@
                 
                 <h:form>
                     <fieldset class="f_update">
+                        <h:panelGrid columns="2" cellpadding="5" cellspacing="0" styleClass="table_cours" columnClasses="recap_col1, recap_col2" style="width: 70%">
+                            <h:outputLabel value="" />
+                            <h:graphicImage value="/images/cours/#{updateCours.cours.image}" height="100" width="140"/>
+
+                            <h:outputLabel value="#{messages.titreCours}" />
+                            <h:outputLabel value="#{updateCours.cours.nomCours}" />
+
+                            <h:outputLabel value="#{messages.description}" />
+                            <h:outputLabel value="#{updateCours.cours.description}" style="width: 50%"/>
+
+                            <h:outputLabel value="#{messages.price}" />
+                            <h:outputLabel value="#{updateCours.cours.prix}" />
+                        </h:panelGrid>
+                        
+                        <hr class="hr_episode" />
+                        
+                        <h:panelGroup layout="block" styleClass="conteneur_episodes">
+                            <ui:repeat value="#{listeEpisodes.episodes}" var="episodes">
+                                <h:panelGroup styleClass="conteneur_video" style="padding-left: 15px">
+                                    <iframe src="#{episodes.fichierVideo}?start=60&amp;end=90&amp;autoplay=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3" height="100" width="150" frameborder="0" allowfullscreen="false"/><br/>
+                                    #{episodes.nomEpisode}<br />#{dateFrancaise.dateEN_FR(episodes.dateEpisode)}<br />
+                                </h:panelGroup>
+                            </ui:repeat>
+                        </h:panelGroup>
+                        
+                        <hr class="hr_episode" />
+                        
                         <h:inputHidden value="#{newEpisode.cours.idCours}" />
                         <h:panelGrid columns="3" cellpadding="5" cellspacing="0" styleClass="table_cours">
                                                         
@@ -55,6 +86,7 @@
                             </f:facet>
                             
                         </h:panelGrid>
+                                                
                     </fieldset>
                 </h:form>
                     

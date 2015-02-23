@@ -43,7 +43,7 @@
                     <h:panelGroup layout="block" styleClass="conteneur_episodes">
                         <ui:repeat value="#{listeEpisodes.episodes}" var="episodes">
                             <h:panelGroup styleClass="conteneur_video">
-                                <iframe src="#{episodes.fichierVideo}?start=60&amp;end=90&amp;autoplay=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3" height="220" width="220" frameborder="0" allowfullscreen="false" style="border-radius: 220px"/><br/>
+                                <iframe src="#{episodes.fichierVideo}?start=60&amp;end=90&amp;autoplay=0&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;disablekb=1&amp;fs=0" height="220" width="220" frameborder="0" allowfullscreen="false" style="border-radius: 220px"/><br/>
                                     #{episodes.nomEpisode}
                             </h:panelGroup>
                         </ui:repeat>
